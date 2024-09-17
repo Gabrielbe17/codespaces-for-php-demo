@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="row justify-content-between navbar bg-dark">
+    <header class="row justify-content-around navbar bg-dark">
         <div class="col-4">
             <?php
                 echo "<img src='../../images/logo-fpllefia.png'>";
@@ -26,19 +26,20 @@
     </header>
     <div class="d-flex justify-content-center align-items-center mx-auto mt-5" style="max-width: 40rem;">
         <div class="mr-4">
-            <img src="../../images/foto.png" alt="" class="rounded-circle">
+            <?php
+                echo "<img src='../../images/foto.png' class='rounded-circle'>";
+            ?>
             <h2>Gabriel Bascope</h2>
         </div>
         <div class="">
             1. Es tracta de l'etiqueta que obre un bloc de codi php i es tanca amb '?>'
-             
             2. Es defineix la funció sayHello dins aquest bloc. Rep un paràmetre i retorna un "Hello " + el paràmetre passat.
             3. S'executa la funció sayHello que té com a paràmetre 'remote world'
             4. Es crida a la funció phpinfo, que mostra informació sobre la configuració de PHP.
         </div>
     </div>
     <footer class="bg-dark text-white fixed-bottom">
-        <h3 class="text-center">Gabriel Bascope</h3><br>
+        <h3 class="text-center">Gabriel Bascope</h3>
         <?php
             mostrarFecha();
         ?>
