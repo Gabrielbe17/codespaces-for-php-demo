@@ -17,7 +17,7 @@
     <header class="row justify-content-around navbar bg-dark">
         <div class="col-4">
             <?php
-                echo "<img src='../../images/logo-fpllefia.png'>";
+                echo "<img src='images/logo-fpllefia.png'>";
             ?>
         </div>
         <div class="col-4">
@@ -27,7 +27,7 @@
     <div class="d-flex justify-content-center align-items-center mx-auto mt-5" style="max-width: 40rem;">
         <div class="mr-4">
             <?php
-                echo "<img src='../../images/foto.png' class='rounded-circle'>";
+                echo "<img src='images/foto.png' class='rounded-circle'>";
             ?>
             <h2>Gabriel Bascope</h2>
         </div>
