@@ -3,13 +3,20 @@
         $nRandom = rand(1, 100);
         return $nRandom;
     }
-    $randomGlob = generarRandom();
 
-    function mostrarRandom(){
+    function mostrarResultado(){
         $nRandom = generarRandom();
-        $randomGlob = $nRandom;
+
         echo "<h3 class='p-2'>Nombre generat: $nRandom</h3>";
         echo "<h4>Divisors de $nRandom: </h4><br>";
+
+
+        for ($i=1; $i <= $nRandom; $i++) { 
+            if ($nRandom % $i == 0) {
+                echo "<div class = 'bg-dark text-light p-2'>$i</div>";
+            }
+        }
+
     }
     function mostrarDivisores(){
         for ($i=1; $i <= $i; $i++) { 
@@ -18,9 +25,7 @@
             }
         }
     }
-    function esPrimer($num){
 
-    }
 ?>
 
 <!DOCTYPE html>
@@ -39,23 +44,17 @@
         body{
             min-height: 100vh;
             gap: 1rem;
+            justify-content: center;
+        }
+        .container{
+            border: 1px solid red;
         }
     </style>
 </head>
 <body style="font-family: 'Poppins', sans-serif;" class="d-flex justify-content-center align-items-center">
     <div class="container">
         <?php
-            mostrarRandom()
-        ?>
-        <div class="divisores">
-            <div>
-                <?php
-                    mostrarDivisores();
-                ?>
-            </div>
-        </div>
-        <?php
-            // esPrimer();
+            mostrarResultado();
         ?>
     </div>
 </body>
