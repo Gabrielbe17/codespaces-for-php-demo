@@ -19,11 +19,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Excercici 3 - Nombre aleatori parell o senar</h1>
-    <h3>Nombre parell - Blau</h3>
-    <h3>Nombre senar - Groc</h3><br>
-    <?php
-        numAleatori();
-    ?>
+    <div class="contenido" style="max-width: 70rem; margin:0 auto;">
+        <h1>Excercici 3 - Nombre aleatori parell o senar</h1>
+        <h3>Nombre parell - Blau</h3>
+        <h3>Nombre senar - Groc</h3><br>
+        <?php
+            numAleatori();
+        ?>
+    </div>
 </body>
 </html>
