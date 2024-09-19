@@ -2,7 +2,7 @@
     function parells(){
         for ($i=50; $i <= 500; $i++) { 
             if ($i % 2 == 0) {
-                echo "<div class='bg-dark text-light col'>$i</div>";
+                echo "<div class='bg-dark text-light col m-1 p-2'>$i</div>";
             }
         }
     }
