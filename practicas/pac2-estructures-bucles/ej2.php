@@ -27,7 +27,7 @@
 </head>
 <body style="font-family: 'Poppins', sans-serif;">
     <div class="container">
-        <h1 class="text-center p-2">Excercici 2 - Taules de multiplicar</h1>
+        <h1 class="text-center p-3">Excercici 2 - Taules de multiplicar</h1>
         <div class="row d-flex justify-content-center" style="gap:1rem;">
             <?php
                 mostrarTaulesMult();

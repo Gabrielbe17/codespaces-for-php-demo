@@ -3,6 +3,15 @@
         $nRandom = rand(1, 100);
         return $nRandom;
     }
+    function esPrimo($n){
+        //Si el nombre te divisors a més de l'1 i el mateix, no es primer
+        for ($i=2; $i < $n; $i++) { 
+            if ($n % $i == 0) {
+                return False;
+            }
+        }
+        return True;
+    }
 
     function mostrarResultado(){
         $nRandom = generarRandom();
@@ -10,22 +19,20 @@
         echo "<h3 class='p-2'>Nombre generat: $nRandom</h3>";
         echo "<h4>Divisors de $nRandom: </h4><br>";
 
-
+        echo "<div class='d-flex justify-content-center divisores'>";
         for ($i=1; $i <= $nRandom; $i++) { 
             if ($nRandom % $i == 0) {
-                echo "<div class = 'bg-dark text-light p-2'>$i</div>";
+                echo "<div class = 'bg-dark text-light p-3 rounded'>$i</div>";
             }
         }
+        echo "</div><br>";
 
-    }
-    function mostrarDivisores(){
-        for ($i=1; $i <= $i; $i++) { 
-            if ($i % $i == 0) {
-                echo "<div></div>";
-            }
+        if (esPrimo($nRandom) && $nRandom != 1) {
+            echo "<p>El nombre $nRandom <span class='text-danger'>Si</span> és primer.</p>";
+        }else{
+            echo "<p>El nombre $nRandom <span class='text-danger'>No</span> és primer.</p>";
         }
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -47,12 +54,20 @@
             justify-content: center;
         }
         .container{
-            border: 1px solid red;
+            max-width: 60rem;
+            text-align: center;
+            gap: 1rem;
+        }
+        .divisores{
+            gap: 1rem;
+        }
+        p{
+            font-size: 1.3rem;
         }
     </style>
 </head>
 <body style="font-family: 'Poppins', sans-serif;" class="d-flex justify-content-center align-items-center">
-    <div class="container">
+    <div class="container d-flex flex-column justify-content-center">
         <?php
             mostrarResultado();
         ?>

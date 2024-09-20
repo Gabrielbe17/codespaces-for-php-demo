@@ -22,7 +22,7 @@
 </head>
 <body style="font-family: 'Poppins', sans-serif;">
     <div class="container" style="max-width: 80rem; margin: 0 auto; text-align:center;">
-        <h1>Excercici 1 - Nombres parells entre 50 i 500</h1>
+        <h1 class="p-3">Excercici 1 - Nombres parells entre 50 i 500</h1>
         <div class="row numeros d-flex flex-wrap justify-content-center" style="gap: 1rem;">
             <?php
                 parells();
