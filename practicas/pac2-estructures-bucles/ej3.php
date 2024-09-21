@@ -2,9 +2,9 @@
     function numAleatori(){
         $numRandom = rand(0, 100);
         if ($numRandom % 2 == 0) {
-            echo "<div class = 'bg-primary p-3'>$numRandom</div>";
+            echo "<div class = 'bg-primary p-3 text-center display-6 text-light'>$numRandom</div>";
         }else{
-            echo "<div class = 'bg-warning p-3'>$numRandom</div>";
+            echo "<div class = 'bg-warning p-3 text-center display-6 text-light'>$numRandom</div>";
         }
     }
 ?>
@@ -25,8 +25,8 @@
 <body style="font-family: 'Poppins', sans-serif;">
     <div class="contenido" style="max-width: 70rem; margin:0 auto; padding: 2rem;">
         <h1>Excercici 3 - Nombre aleatori parell o senar</h1>
-        <h3>Nombre parell - Blau</h3>
-        <h3>Nombre senar - Groc</h3><br>
+        <h3>Nombre parell - <span class="text-primary">Blau</span></h3>
+        <h3>Nombre senar - <span class="text-warning">Groc</span></h3><br>
         <?php
             numAleatori();
         ?>
