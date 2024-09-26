@@ -15,7 +15,8 @@
             foreach ($fruites as $fruta) {
                 if ($fruta['nom'] == $nom) {
                     $fruta['seleccionada'] = true;
-                    
+                    mostrarFruites($fruites);
+
                     //Mostramos la card
                     echo "<div class='card mt-4 w-25 shadow-lg'>";
                         echo "<img src='{$fruta['imatge']}' class='card-img-top img-fluid' alt='{$fruta['nom']}'>";
@@ -31,6 +32,21 @@
     }
     function mostrarFruites($fruites){
        // función que recorra el array y genere el html para cada fila de la tabla
+       foreach ($fruites as $fruta) {
+            if ($fruta['seleccionada'] == true) {
+                echo "<tr class='table-danger'>";
+                    echo "<td>{$fruta['nom']}</td>";
+                    echo "<td>✔️ Seleccionada</td>";
+                    echo "<td><a class='btn btn-primary' href='?fruta={$fruta['nom']}'>Seleccionar</a></td>";
+                echo "</tr>";
+            }else{
+                echo "<tr class='table-danger'>";
+                    echo "<td>{$fruta['nom']}</td>";
+                    echo "<td>✖ No seleccionada</td>";
+                    echo "<td><a class='btn btn-primary' href='?fruta={$fruta['nom']}'>Seleccionar</a></td>";
+                echo "</tr>";
+            }
+       }
     }
     
 ?>
@@ -54,31 +70,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-danger">
-                    <td>Manzana</td>
-                    <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="?fruta=Manzana">Seleccionar</a></td>
-                </tr>
-                <tr class="table-danger">
-                    <td>Plátano</td>
-                    <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="?fruta=Plátano">Seleccionar</a></td>
-                </tr>
-                <tr class="table-danger">
-                    <td>Naranja</td>
-                    <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="?fruta=Naranja">Seleccionar</a></td>
-                </tr>
-                <tr class="table-danger">
-                    <td>Fresa</td>
-                    <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="?fruta=Fresa">Seleccionar</a></td>
-                </tr>
-                <tr class="table-danger">
-                    <td>Kiwi</td>
-                    <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="?fruta=Kiwi">Seleccionar</a></td>
-                </tr>
+                <?php
+                    mostrarFruites($fruites);
+                ?>
             </tbody>
         </table>
 
