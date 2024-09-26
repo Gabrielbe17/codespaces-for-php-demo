@@ -1,15 +1,15 @@
 <?php
     // Llista associativa
     $idols = [
-      ["imatge" => "images/pic01.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic02.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic03.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic04.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic05.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic06.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic07.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic08.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
-      ["imatge" => "images/pic09.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
+      ["imatge" => "images/messi.jpg","nom" => "Leo","cognom" => "Messi","descripció" => "Per ser el millor jugador de la història i ensenyar-me valors importants"],
+      ["imatge" => "images/neymar.jpg","nom" => "Neymar","cognom" => "Da Silva Santos Jr.","descripció" => "Per ser el jugador que més veia de petit i al qui volia imitar"],
+      ["imatge" => "images/ronaldinho.jpg","nom" => "Ronaldinho","cognom" => "Gaucho","descripció" => "Igual que neymar, per la seva màgia. Llàstima que no vaig poder veure'l en directe"],
+      ["imatge" => "images/xavi.jpg","nom" => "Xavi","cognom" => "Hernández","descripció" => "Pel seu treball i compromís amb el club"],
+      ["imatge" => "images/iniesta.jpg","nom" => "Andrés","cognom" => "Iniesta","descripció" => "Per ser un dels millors mitjcampistes de la història"],
+      ["imatge" => "images/puyol.jpg","nom" => "Carles","cognom" => "Puyol","descripció" => "Pel seu llideratge"],
+      // ["imatge" => "images/pic07.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
+      // ["imatge" => "images/pic08.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
+      // ["imatge" => "images/pic09.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
     ];
     
     
@@ -20,9 +20,10 @@
         $imgUrl = $card["imatge"];
         echo "<div class='col'>";
         echo "<div class='card shadow-sm'>";
-          echo "<img src='$imgUrl'>";
+          echo "<img src='$imgUrl' class='img-responsive'>";
           echo "<div class='card-body'>";
-            echo "<p class='card-text'>{$card["imatge"]}</p>";
+            echo "<h3>{$card['nom']} {$card['cognom']}</h3>";
+            echo "<p class='card-text'>{$card['descripció']}</p>";
             echo "<div class='d-flex justify-content-between align-items-center'>";
               echo "<div class='btn-group'>";
                 echo "<button type='button' class='btn btn-sm btn-outline-secondary'>View</button>";
@@ -65,6 +66,11 @@
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
       }
+    }
+    img{
+      width: 100%;
+      height: 10rem;
+      object-fit: cover;
     }
   </style>
 
