@@ -1,3 +1,39 @@
+<?php
+    // Array frutas
+    $fruites = [
+        ["nom" => "Manzana", "imatge" => "https://static.vecteezy.com/system/resources/previews/023/858/853/non_2x/ai-genrative-green-apple-free-png.png", "seleccionada" => false],
+        ["nom" => "Plátano", "imatge" => "images/banana.jpg","seleccionada" => false],
+        ["nom" => "Naranja", "imatge" => "images/orange.jpg", "seleccionada" => false],
+        ["nom" => "Fresa", "imatge" => "images/strawberry.jpg", "seleccionada" => false],
+        ["nom" => "Kiwi", "imatge" => "images/kiwi.jpg", "seleccionada" => false]
+    ];
+
+    function mostrarCardFrutaSeleccionada($fruites){
+        if (isset($_GET['fruta'])) {
+            $nom = $_GET['fruta'];
+
+            foreach ($fruites as $fruta) {
+                if ($fruta['nom'] == $nom) {
+                    $fruta['seleccionada'] = true;
+                    
+                    //Mostramos la card
+                    echo "<div class='card mt-4 w-25 shadow-lg'>";
+                        echo "<img src='{$fruta['imatge']}' class='card-img-top img-fluid' alt='{$fruta['nom']}'>";
+                        echo "<div class='card-body bg-warning'>";
+                            echo "<h5 class='card-title'>{$fruta['nom']}</h5>";
+                            echo "<p class='card-text'>¡Esta es tu fruta favorita!</p>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+            }
+        }
+        
+    }
+    function mostrarFruites($fruites){
+       // función que recorra el array y genere el html para cada fila de la tabla
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,39 +57,34 @@
                 <tr class="table-danger">
                     <td>Manzana</td>
                     <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="">Seleccionar</a></td>
+                    <td><a class="btn btn-primary" href="?fruta=Manzana">Seleccionar</a></td>
                 </tr>
                 <tr class="table-danger">
                     <td>Plátano</td>
                     <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="">Seleccionar</a></td>
+                    <td><a class="btn btn-primary" href="?fruta=Plátano">Seleccionar</a></td>
                 </tr>
                 <tr class="table-danger">
                     <td>Naranja</td>
                     <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="">Seleccionar</a></td>
+                    <td><a class="btn btn-primary" href="?fruta=Naranja">Seleccionar</a></td>
                 </tr>
                 <tr class="table-danger">
                     <td>Fresa</td>
                     <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="">Seleccionar</a></td>
+                    <td><a class="btn btn-primary" href="?fruta=Fresa">Seleccionar</a></td>
                 </tr>
                 <tr class="table-danger">
                     <td>Kiwi</td>
                     <td>✖ No seleccionada</td>
-                    <td><a class="btn btn-primary" href="">Seleccionar</a></td>
+                    <td><a class="btn btn-primary" href="?fruta=Kiwi">Seleccionar</a></td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- Mostrar tarjeta de la fruta seleccionada (actualmente estatica, siempre hay una manzana) -->
-        <div class="card mt-4 w-25 shadow-lg">
-            <img src="https://static.vecteezy.com/system/resources/previews/023/858/853/non_2x/ai-genrative-green-apple-free-png.png" class="card-img-top img-fluid" alt="Manzana">
-            <div class="card-body bg-warning">
-                <h5 class="card-title">Manzana</h5>
-                <p class="card-text">¡Esta es tu fruta favorita!</p>
-            </div>
-        </div>
+        <?php
+            mostrarCardFrutaSeleccionada($fruites);
+        ?>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
