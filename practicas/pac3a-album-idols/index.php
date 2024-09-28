@@ -12,9 +12,8 @@
       // ["imatge" => "images/pic09.jpg","nom" => "Prueba1","cognom" => "Prueba2","descripció" => "asfasdf"],
     ];
     
-    
+    //Función que muestra las cards
     function mostrarIdolos($idols){
-      // Esqueleto codigo html CARD
       foreach ($idols as $card) {
         
         $imgUrl = $card["imatge"];
