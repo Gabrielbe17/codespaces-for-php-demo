@@ -23,6 +23,15 @@
         }
     }
 
+    //Función que muestra los parametros correctos cuando le damos a un color
+    function mostrarParametros($color){
+        if (isset($_GET['fruta'])) {
+            echo "?fruta={$_GET['fruta']}&color={$color}";
+        }else{
+            return "";
+        }
+    }
+
     //Función que muestra la card en el html de la fruta seleccionada
     function mostrarCardFrutaSeleccionada(){
         global $fruites;
@@ -49,12 +58,12 @@
         global $fruites;
 
         foreach ($fruites as $fruta) {
-            if ($fruta['seleccionada'] == true) {
+            if ($fruta['seleccionada'] == true) {       
                 echo "<tr class='table-success'>";
                     echo "<td>{$fruta['nom']}</td>";
                     echo "<td>✔️ Seleccionada</td>";
-                    echo "<td><a class='btn btn-primary' href='?fruta={$fruta['nom']}'>Seleccionar</a></td>";
-                echo "</tr>";
+                        echo "<td><a class='btn btn-primary' href='?fruta={$fruta['nom']}'>Seleccionar</a></td>";
+                    echo "</tr>";
             }else{
                 echo "<tr class='table-danger'>";
                     echo "<td>{$fruta['nom']}</td>";
@@ -66,8 +75,37 @@
     }
 
     // Extra: 
-    function(){
-
+    function cambiarBgColor(){
+        if (isset($_GET['color'])) {
+            $bgColor = $_GET['color'];
+            switch ($bgColor) {
+                case 'rojo':
+                    echo "background-color: red";
+                    break;
+                
+                case 'azul':
+                    echo "background-color: blue";
+                    break;
+                
+                case 'azulClaro':
+                    echo "background-color: lightblue";
+                    break;
+                
+                case 'negro':
+                    echo "background-color: black";
+                    break;
+                
+                case 'amarillo':
+                    echo "background-color: yellow";
+                    break;
+                
+                case 'verde':
+                    echo "background-color: green";
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     
 ?>
@@ -78,10 +116,15 @@
     <title>Frutas favoritas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-
+        .button { 
+            color: white;
+            padding: 5px 15px;
+            margin-right: .5rem;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body style="<?php ?>">
+<body style="<?php cambiarBgColor();?>">
     <div class="container mt-5">
         <h1 class="text-center">Selecciona tu fruta favorita</h1>
 
@@ -106,21 +149,12 @@
         ?>
     </div>
     <div class="position-absolute" style="top: 2rem; right: 3rem;">
-        <?php
-            function mostrarParametros($color){
-                if (isset($_GET['fruta'])) {
-                    return "?fruta={$_GET['fruta']}&color={$color}";
-                }else{
-                    return "";
-                }
-            }
-        ?>
-        <button class="btn btn-danger"><a href=<?php mostrarParametros("rojo")?>>asdf</a></button>
-        <button class="btn btn-primary"><a href=<?php mostrarParametros("azul")?>>asdf</a></button>
-        <button class="btn btn-info"><a href=<?php mostrarParametros("azulClaro")?>>fas</a></button>
-        <button class="btn btn-dark"><a href=<?php mostrarParametros("negro")?>>asdf</a></button>
-        <button class="btn btn-warning"><a href=<?php mostrarParametros("amarillo")?>>sdf</a></button>
-        <button class="btn btn-success"><a href=<?php mostrarParametros("verde")?>>sdf</a></button>
+        <a href=<?php mostrarParametros("rojo")?> class="btnColor button bg-danger"></a>
+        <a href=<?php mostrarParametros("azul")?> class="btnColor button bg-primary"></a>
+        <a href=<?php mostrarParametros("azulClaro")?> class="btnColor button bg-info"></a>
+        <a href=<?php mostrarParametros("negro")?> class="btnColor button bg-dark"></a>
+        <a href=<?php mostrarParametros("amarillo")?> class="btnColor button bg-warning"></a>
+        <a href=<?php mostrarParametros("verde")?> class="btnColor button bg-success"></a>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
