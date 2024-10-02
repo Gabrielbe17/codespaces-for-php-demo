@@ -1,8 +1,40 @@
 <!-- Disenyar una pagina con un header que contenga el titulo de la cartelera y del cine -->
 <!-- Mostrar un layout de 10 peliculas en forma de cards -->
+ 
+
 <?php
 // Array de las peliculas
-include "pelicules.php"
+include "pelicules.php";
+
+
+// foreach ($pelicules as $pelicula) {
+//     echo $pelicula['urlTrailer'] . "<br>";
+// }
+
+
+
+
+function mostrarPeliculas($pelicules){
+    foreach ($pelicules as $pelicula) {
+      $imgUrl = $pelicula["img"];
+      echo "<div class='col'>";
+      echo "<div class='card shadow-sm'>";
+        echo "<h4 class='text-center'>{$pelicula['nom']}</h4>";
+        echo "<img src='$imgUrl' class='img-responsive'>";
+        echo "<div class='card-body'>";
+            echo "<div class='d-flex justify-content-between align-items-center'>";
+                echo "<div class='btn-group d-flex justify-content-center'>";
+                    // Mostrar, en Botones, los horarios disponibles de cada pelicula 
+
+                echo "<button type='button' class='btn btn-sm bg-danger text-light'>View</button>";
+                echo "<button type='button' class='btn btn-sm bg-danger text-light'>Edit</button>";
+                echo "</div>";
+        echo "</div>";
+        echo "</div>";
+      echo "</div>";
+      echo "</div>";
+    } 
+  }
 
 ?> 
 
@@ -40,6 +72,16 @@ include "pelicules.php"
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
       }
+    }
+
+    .btn-group{
+        gap: 1rem;
+    }
+    img{
+        /* width: 2rem; */
+    }
+    .album .container > div{
+        /* display: flex; */
     }
   </style>
 
@@ -102,10 +144,10 @@ include "pelicules.php"
       <div class="container">
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
+          <!-- <div class="col">
             <div class="card shadow-sm">
                 <h4 class="text-center">Titulo</h4>
-                <!-- Imagen Pelicula -->
+                Imagen Pelicula
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
                 aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
                 <title>Placeholder</title>
@@ -125,8 +167,11 @@ include "pelicules.php"
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
             <!-- FIN DE CARD -->
+            <?php
+                mostrarPeliculas($pelicules);
+            ?>
         </div>
       </div>
     </div>

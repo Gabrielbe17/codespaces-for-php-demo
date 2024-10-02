@@ -1,4 +1,4 @@
-<!-- Información de la página del cine -->
+<!-- Información de las peliculas de la cartelera -->
 <?php
     $pelicules = [
         ["nom" => "Alice", "img" => "images/alice.jpg", "hor" => ["18:00", "22:30"], "sinop" => "Con su mujer en el hospital, un padre en apuros compra una Inteligencia Artificial para ayudarle en las tareas de casa. Pero a medida que la robot se encariña de su nuevo dueño, los límites empiezan a cruzarse. Pronto ella se empeña en eliminar lo que percibe como la verdadera amenaza para su felicidad: su familia.", "dur" => "105", "director" => "S. K. Dale", "repart" => "Michele Morrone, Megan Fox, Madeline Zima", "qual" => "16", "gen" => "Thriller", "urlTrailer" => "https://www.youtube.com/watch?v=mRVyQxmBrgY"],   
