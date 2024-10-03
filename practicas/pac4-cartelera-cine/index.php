@@ -24,6 +24,7 @@ function mostrarPeliculas($pelicules){
                     echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>{$horario[$i]}</button>";
                   }
                 echo "</div>";
+                //Otro group button para los botones: Ver trailer y ver mes información (detalle pelicula)
         echo "</div>";
         echo "</div>";
       echo "</div>";
