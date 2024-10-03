@@ -17,14 +17,18 @@ function mostrarPeliculas($pelicules){
         echo "<h4 class='text-center card-header'>{$pelicula['nom']}</h4>";
         echo "<img src='$imgUrl' class='img-responsive card-img-top'>";
         echo "<div class='card-body'>";
-            echo "<div class='d-flex justify-content-center align-items-center'>";
-                echo "<div class='btn-group border border-warning'>";
+            echo "<div class='d-flex justify-content-center align-items-center flex-column'>";
+                echo "<div class='btn-group'>";
                     // Mostrar, en Botones, los horarios disponibles de cada pelicula 
-                  for ($i=0; $i < count($horario); $i++) { 
-                    echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>{$horario[$i]}</button>";
-                  }
+                   for ($i=0; $i < count($horario); $i++) { 
+                     echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>{$horario[$i]}</button>";
+                   }
                 echo "</div>";
                 //Otro group button para los botones: Ver trailer y ver mes información (detalle pelicula)
+                echo "<div class='btn-group d-flex'>";
+                  echo "<a href='#' class='trailer-btn'><i class='fa-solid fa-play'></i></a>";
+                  echo "<a href='detall.php?nom={$pelicula['nom']}' class='info-btn' target='_blank'><i class='fa-solid fa-book'></i></i></a>";
+                echo "</div>";
         echo "</div>";
         echo "</div>";
       echo "</div>";
@@ -44,7 +48,7 @@ function mostrarPeliculas($pelicules){
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.72.0">
   <title>Cartellera Ocine</title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
 
 
@@ -57,6 +61,7 @@ function mostrarPeliculas($pelicules){
   <style>
     :root{
       --rojo: rgb(227, 29, 26);
+      --textoRoj: rgb(255, 0, 0);
     }
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -75,6 +80,20 @@ function mostrarPeliculas($pelicules){
 
     .btn-group{
         gap: 1rem;
+    }
+    /* Estilos botones trailer e info */
+    .trailer-btn, .info-btn{
+      background-color: #000000;
+      font-size: .75rem;
+      /* height: 2rem;
+      width: 2rem; */
+      color: var(--textoRoj);
+      font-size: 1rem;
+      /* border-radius: 50%; */
+      padding: .5rem;
+    }
+    .card-body > div{
+      gap: 1rem;
     }
     
   </style>
@@ -120,7 +139,6 @@ function mostrarPeliculas($pelicules){
   </header>
 
   <main>
-
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
