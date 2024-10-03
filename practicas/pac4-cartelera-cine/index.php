@@ -7,27 +7,22 @@
 include "pelicules.php";
 
 
-// foreach ($pelicules as $pelicula) {
-//     echo $pelicula['urlTrailer'] . "<br>";
-// }
-
-
-
-
 function mostrarPeliculas($pelicules){
     foreach ($pelicules as $pelicula) {
       $imgUrl = $pelicula["img"];
+      $horario = $pelicula["hor"];
+
       echo "<div class='col'>";
       echo "<div class='card shadow-sm'>";
-        echo "<h4 class='text-center'>{$pelicula['nom']}</h4>";
-        echo "<img src='$imgUrl' class='img-responsive'>";
+        echo "<h4 class='text-center card-header'>{$pelicula['nom']}</h4>";
+        echo "<img src='$imgUrl' class='img-responsive card-img-top'>";
         echo "<div class='card-body'>";
-            echo "<div class='d-flex justify-content-between align-items-center'>";
-                echo "<div class='btn-group d-flex justify-content-center'>";
+            echo "<div class='d-flex justify-content-center align-items-center'>";
+                echo "<div class='btn-group border border-warning'>";
                     // Mostrar, en Botones, los horarios disponibles de cada pelicula 
-
-                echo "<button type='button' class='btn btn-sm bg-danger text-light'>View</button>";
-                echo "<button type='button' class='btn btn-sm bg-danger text-light'>Edit</button>";
+                  for ($i=0; $i < count($horario); $i++) { 
+                    echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>{$horario[$i]}</button>";
+                  }
                 echo "</div>";
         echo "</div>";
         echo "</div>";
@@ -59,6 +54,9 @@ function mostrarPeliculas($pelicules){
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
   <style>
+    :root{
+      --rojo: rgb(227, 29, 26);
+    }
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -77,12 +75,7 @@ function mostrarPeliculas($pelicules){
     .btn-group{
         gap: 1rem;
     }
-    img{
-        /* width: 2rem; */
-    }
-    .album .container > div{
-        /* display: flex; */
-    }
+    
   </style>
 
 
@@ -111,12 +104,13 @@ function mostrarPeliculas($pelicules){
         </div>
       </div>
     </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar navbar-dark bg-light shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <strong>Ocine Màgic</strong>
+          <!-- <strong>Ocine Màgic</strong> -->
+           <img src="images/cineLogo.png" alt="" srcset="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+        <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarHeader"
           aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -143,7 +137,7 @@ function mostrarPeliculas($pelicules){
     <div class="album py-5 bg-light">
       <div class="container">
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mx-auto" style="max-width: 55rem;">
           <!-- <div class="col">
             <div class="card shadow-sm">
                 <h4 class="text-center">Titulo</h4>
