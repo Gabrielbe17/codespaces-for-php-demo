@@ -12,7 +12,7 @@ include "pelicules.php";
 function mostrarVideoTrailer($pelicules){
     foreach ($pelicules as $pelicula) {
         if ($pelicula['nom'] == $_GET['nom']) {
-            echo $pelicula['urlTrailer'];
+            echo $pelicula['urlTrailer'] . "?autoplay=1";
         }
     }
 }
@@ -35,7 +35,6 @@ function mostrarVideoTrailer($pelicules){
 
 <body class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh; gap: 5rem;">
     <h1 class="">Trailer <?php mostrarNombre(); ?></h1>
-    <iframe width="560" height="315" src=<?php mostrarVideoTrailer($pelicules); ?> class=""></iframe>
-
+    <iframe width="560" height="315" src="<?php mostrarVideoTrailer($pelicules);?>" allow="autoplay" allowfullscreen></iframe>
 </body>
 </html>
