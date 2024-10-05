@@ -1,6 +1,4 @@
-<!-- Disenyar una pagina con un header que contenga el titulo de la cartelera y del cine -->
 <!-- Mostrar un layout de 10 peliculas en forma de cards -->
- 
 
 <?php
 // Array de las peliculas
@@ -24,9 +22,9 @@ function mostrarPeliculas($pelicules){
                      echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>{$horario[$i]}</button>";
                    }
                 echo "</div>";
-                //Otro group button para los botones: Ver trailer y ver mes información (detalle pelicula)
+                //Otro button group para los botones: Ver trailer y ver mes información (detalle pelicula)
                 echo "<div class='btn-group d-flex'>";
-                  echo "<a href='#' class='trailer-btn'><i class='fa-solid fa-play'></i></a>";
+                  echo "<a href='trailer.php?nom={$pelicula['nom']}' class='trailer-btn' target='_blank'><i class='fa-solid fa-play'></i></a>";
                   echo "<a href='detall.php?nom={$pelicula['nom']}' class='info-btn' target='_blank'><i class='fa-solid fa-book'></i></i></a>";
                 echo "</div>";
         echo "</div>";
@@ -48,6 +46,7 @@ function mostrarPeliculas($pelicules){
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.72.0">
   <title>Cartellera Ocine</title>
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
 
@@ -79,17 +78,14 @@ function mostrarPeliculas($pelicules){
     }
 
     .btn-group{
-        gap: 1rem;
+      gap: 1rem;
     }
     /* Estilos botones trailer e info */
     .trailer-btn, .info-btn{
       background-color: #000000;
       font-size: .75rem;
-      /* height: 2rem;
-      width: 2rem; */
       color: var(--textoRoj);
       font-size: 1rem;
-      /* border-radius: 50%; */
       padding: .5rem;
     }
     .card-body > div{
@@ -127,7 +123,6 @@ function mostrarPeliculas($pelicules){
     <div class="navbar navbar-dark bg-light shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <!-- <strong>Ocine Màgic</strong> -->
            <img src="images/cineLogo.png" alt="" srcset="">
         </a>
         <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarHeader"
@@ -143,9 +138,6 @@ function mostrarPeliculas($pelicules){
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="font-weight-light">Cartellera</h1>
-          <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
-            etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-          <p> -->
             <a href="#" class="btn btn-primary my-2">Main call to action</a>
             <a href="#" class="btn btn-secondary my-2">Secondary action</a>
           </p>
@@ -157,31 +149,6 @@ function mostrarPeliculas($pelicules){
       <div class="container">
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mx-auto" style="max-width: 55rem;">
-          <!-- <div class="col">
-            <div class="card shadow-sm">
-                <h4 class="text-center">Titulo</h4>
-                Imagen Pelicula
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div> -->
-            <!-- FIN DE CARD -->
             <?php
                 mostrarPeliculas($pelicules);
             ?>

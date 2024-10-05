@@ -3,12 +3,7 @@
 <?php
 include "pelicules.php";
 
-function mostrarNombre(){
-    if (isset($_GET['nom'])) {
-        $nom = $_GET['nom'];
-        echo "$nom";
-    }
-}
+
 //Función que busca el url de la imagen de la pelicula seleccionada
 function mostrarImagen($pelicules){
     foreach ($pelicules as $pelicula) {
@@ -17,18 +12,20 @@ function mostrarImagen($pelicules){
         }
     }
 }
-function mostrarQualificacionCorrecta(){
-    
-}
 
+// FUNCION QUE MUESTRA LA INFORMACION DETALLADA DE LA PELICULA SELECCIONADA
 function mostrarInformacioPelicula($pelicules){
     foreach ($pelicules as $pelicula) {
 
         if ($pelicula['nom'] == $_GET['nom']) {
             $qualCorr = null;
+            $horarios = $pelicula['hor'];
+
+            //Concatenar 'años' si la calificacion es numerica.
             if (is_numeric($pelicula['qual'])) {
                 $qualCorr = " años";
             }
+
             echo "<p class='card-text sinopsi'>{$pelicula['sinop']}</p><br><br>";
             echo "<h5>Durada: </h5><span class=''>{$pelicula['dur']}'</span><br><br>";
             echo "<h5>Director: </h5><span class=''>{$pelicula['director']}</span><br><br>";
@@ -36,14 +33,16 @@ function mostrarInformacioPelicula($pelicules){
             echo "<h5>Actors: </h5><span class=''>". implode(", ", $pelicula['repart']) ."</span><br><br>";
             echo "<h5>Qualificació: </h5><span class''>{$pelicula['qual']}". $qualCorr ."</span><br><br>";
             echo "<h5>Gènere: </h5><span class=''>{$pelicula['gen']}</span><br><br>";
-            echo "<div class='detall-horaris border d-flex align-items-center justify-content-between'>";
-                    echo "<h6 class='border'>Horaris:</h6>";
-                    echo "<div class='btn-group border w-60'>";
-                        echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>asdfs</button>";
-                        echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>asdf</button>";    
+            echo "<div class='detall-horaris border d-flex align-items-center justify-content-between border border-dark' style='background-color: #efefef;'>";
+                echo "<div class='d-flex p-2 justify-content-between align-items-center w-50'>";
+                    echo "<h6>Horaris:</h6>";
+                    echo "<div class='btn-group d-flex' style='gap: 1rem;'>";
+                        for ($i=0; $i < count($horarios); $i++) { 
+                            echo "<button type='button' class='btn btn-sm text-light' style='background-color: var(--rojo);'>{$horarios[$i]}</button>";
+                        }
                     echo "</div>";
+                echo "</div>";    
             echo "</div>";
-            echo "<p class='card-text durada'><small class='text-muted'>Last updated 3 mins ago</small></p>";
         }
     }
 
@@ -55,7 +54,7 @@ function mostrarInformacioPelicula($pelicules){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle</title>
+    <title>Detalle <?php mostrarNombre(); ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
       <!-- Bootstrap core CSS -->
@@ -71,6 +70,10 @@ function mostrarInformacioPelicula($pelicules){
         h5{
             display: inline;
         }
+        a{
+            text-decoration: none;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -78,9 +81,9 @@ function mostrarInformacioPelicula($pelicules){
         <h1 class="card-title"><?php mostrarNombre(); ?></h1>
         <hr>
         <div class="row no-gutters">
-            <div class="col-md-4">
+            <div class="col-md-4 d-flex flex-column" style="gap: 1rem;">
                 <img src=<?php mostrarImagen($pelicules); ?> class="card-img" alt="...">
-                <div><a href="">Trailer</a></div>
+                <a href="trailer.php?nom=<?php mostrarNombre(); ?>" target="_blank" class="text-dark border border-dark text-center w-100 p-1"><i class="fa fa-play-circle"></i> TRAILER</a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
