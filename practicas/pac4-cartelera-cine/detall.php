@@ -16,10 +16,14 @@ function mostrarEstrellasValoracion($nota){
     //convertir string pasado a float
     $nota = (float) $nota;
 
+    //redondear al entero mas proximo esta nota
     $numEstrellas = round(($nota * 5) / 10);
+    $estrellas = '';
     for ($i=0; $i < $numEstrellas; $i++) { 
-        echo "<i class='fa-solid fa-star'></i>"; 
+        $estrellas .= "<i class='fa-solid fa-star'></i>"; 
     }
+    return $estrellas;
+
 }
 
 // FUNCION QUE MUESTRA LA INFORMACION DETALLADA DE LA PELICULA SELECCIONADA
@@ -53,7 +57,7 @@ function mostrarInformacioPelicula($pelicules){
                 echo "</div>";    
             echo "</div>";
             // TODO: VALORACION EN ESTRELLAS 1-5
-            echo "<br><h5>Valoració:" . mostrarEstrellasValoracion($pelicula['valoracion']) . "</h5>";
+            echo "<br><h5>Valoració: </h5>" ."<div style='display: inline;' class='d-flex align-items-center'>". mostrarEstrellasValoracion($pelicula['valoracion']) . " " . "<i class='fa-brands fa-imdb'></i>" . "</div>";
         }
     }
 
@@ -85,6 +89,9 @@ function mostrarInformacioPelicula($pelicules){
         a{
             text-decoration: none;
             display: inline-block;
+        }
+        i.fa-imdb{
+            font-size: 2rem;
         }
     </style>
 </head>
