@@ -12,6 +12,15 @@ function mostrarImagen($pelicules){
         }
     }
 }
+function mostrarEstrellasValoracion($nota){
+    //convertir string pasado a float
+    $nota = (float) $nota;
+
+    $numEstrellas = round(($nota * 5) / 10);
+    for ($i=0; $i < $numEstrellas; $i++) { 
+        echo "<i class='fa-solid fa-star'></i>"; 
+    }
+}
 
 // FUNCION QUE MUESTRA LA INFORMACION DETALLADA DE LA PELICULA SELECCIONADA
 function mostrarInformacioPelicula($pelicules){
@@ -43,6 +52,8 @@ function mostrarInformacioPelicula($pelicules){
                     echo "</div>";
                 echo "</div>";    
             echo "</div>";
+            // TODO: VALORACION EN ESTRELLAS 1-5
+            echo "<br><h5>Valoració:" . mostrarEstrellasValoracion($pelicula['valoracion']) . "</h5>";
         }
     }
 
@@ -61,6 +72,7 @@ function mostrarInformacioPelicula($pelicules){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <link rel="icon" href="images/favicon.png" type="image/png">
 
     <style>
         :root{
