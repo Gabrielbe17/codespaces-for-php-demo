@@ -25,6 +25,23 @@ function mostrarEstrellasValoracion($nota){
     return $estrellas;
 
 }
+function mostrarImagenesCarrousel($pelicules){
+    foreach ($pelicules as $pelicula) {
+        if ($pelicula['nom'] == $_GET['nom']) {
+            $imagenesCarrousel = $pelicula['imgCarrousel'];
+
+            for ($i=0; $i < count($imagenesCarrousel); $i++) { 
+                if ($i == 0) {
+                    echo "<div class='carousel-item active'>";
+                }else{
+                    echo "<div class='carousel-item'>";
+                }
+                echo "<img class='d-block w-100 mx-auto' src='{$imagenesCarrousel[$i]}' alt='First slide'>";
+                echo "</div>";
+            }
+        }
+    }    
+}
 
 // FUNCION QUE MUESTRA LA INFORMACION DETALLADA DE LA PELICULA SELECCIONADA
 function mostrarInformacioPelicula($pelicules){
@@ -94,6 +111,9 @@ function mostrarInformacioPelicula($pelicules){
         i.fa-imdb{
             font-size: 2rem;
         }
+        img{
+
+        }
     </style>
 </head>
 <body>
@@ -109,7 +129,7 @@ function mostrarInformacioPelicula($pelicules){
                 <div class="card-body">
                     <?php mostrarInformacioPelicula($pelicules); ?>
                 </div>
-                <div id="carouselExampleIndicators" class="carousel slide border border-dark" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -117,7 +137,7 @@ function mostrarInformacioPelicula($pelicules){
                         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        <!-- <div class="carousel-item active">
                         <img class="d-block w-100" src="..." alt="First slide">
                         </div>
                         <div class="carousel-item">
@@ -126,6 +146,12 @@ function mostrarInformacioPelicula($pelicules){
                         <div class="carousel-item">
                         <img class="d-block w-100" src="..." alt="Third slide">
                         </div>
+                        <div class="carousel-item">
+                        <img class="d-block w-100" src="..." alt="Fourth slide">
+                        </div> -->
+                        <?php
+                            mostrarImagenesCarrousel($pelicules);
+                        ?>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
