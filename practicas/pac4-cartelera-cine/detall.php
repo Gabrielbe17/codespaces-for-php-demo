@@ -46,6 +46,8 @@ function mostrarInformacioPelicula($pelicules){
             echo "<h5>Actors: </h5><span class=''>". implode(", ", $pelicula['repart']) ."</span><br><br>";
             echo "<h5>Qualificació: </h5><span class''>{$pelicula['qual']}". $qualCorr ."</span><br><br>";
             echo "<h5>Gènere: </h5><span class=''>{$pelicula['gen']}</span><br><br>";
+            // VALORACION EN ESTRELLAS 1-5
+            echo "<div class='estrellas-box d-flex align-items-center'><h5 style='padding-top: .25rem;' class='mr-2'>Valoració: </h5>" ."". mostrarEstrellasValoracion($pelicula['valoracion']) . " " . "<i class='fa-brands fa-imdb ml-2'></i>" . "</div><br>";
             echo "<div class='detall-horaris border d-flex align-items-center justify-content-between border border-dark' style='background-color: #efefef;'>";
                 echo "<div class='d-flex p-2 justify-content-between align-items-center w-50'>";
                     echo "<h6>Horaris:</h6>";
@@ -56,8 +58,7 @@ function mostrarInformacioPelicula($pelicules){
                     echo "</div>";
                 echo "</div>";    
             echo "</div>";
-            // TODO: VALORACION EN ESTRELLAS 1-5
-            echo "<br><div class='estrellas-box d-flex align-items-center'><h5 style='padding-top: .25rem;' class='mr-2'>Valoració: </h5>" ."". mostrarEstrellasValoracion($pelicula['valoracion']) . " " . "<i class='fa-brands fa-imdb ml-2'></i>" . "</div>";
+            //TODO: CARRUSEL IMAGENES
         }
     }
 
@@ -93,9 +94,6 @@ function mostrarInformacioPelicula($pelicules){
         i.fa-imdb{
             font-size: 2rem;
         }
-        .estrellas-box{
-            /* gap: ; */
-        }
     </style>
 </head>
 <body>
@@ -110,6 +108,33 @@ function mostrarInformacioPelicula($pelicules){
             <div class="col-md-8">
                 <div class="card-body">
                     <?php mostrarInformacioPelicula($pelicules); ?>
+                </div>
+                <div id="carouselExampleIndicators" class="carousel slide border border-dark" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img class="d-block w-100" src="..." alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                        <img class="d-block w-100" src="..." alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                        <img class="d-block w-100" src="..." alt="Third slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
