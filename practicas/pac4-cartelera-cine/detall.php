@@ -57,7 +57,7 @@ function mostrarInformacioPelicula($pelicules){
                 echo "</div>";    
             echo "</div>";
             // TODO: VALORACION EN ESTRELLAS 1-5
-            echo "<br><h5>Valoració: </h5>" ."<div style='display: inline;' class='d-flex align-items-center'>". mostrarEstrellasValoracion($pelicula['valoracion']) . " " . "<i class='fa-brands fa-imdb'></i>" . "</div>";
+            echo "<br><div class='estrellas-box d-flex align-items-center'><h5 style='padding-top: .25rem;' class='mr-2'>Valoració: </h5>" ."". mostrarEstrellasValoracion($pelicula['valoracion']) . " " . "<i class='fa-brands fa-imdb ml-2'></i>" . "</div>";
         }
     }
 
@@ -92,6 +92,9 @@ function mostrarInformacioPelicula($pelicules){
         }
         i.fa-imdb{
             font-size: 2rem;
+        }
+        .estrellas-box{
+            /* gap: ; */
         }
     </style>
 </head>
