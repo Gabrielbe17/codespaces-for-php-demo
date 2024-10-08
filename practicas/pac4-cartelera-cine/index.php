@@ -1,10 +1,9 @@
-<!-- Mostrar un layout de 10 peliculas en forma de cards -->
-
 <?php
 // Array de las peliculas
 include "pelicules.php";
 
 
+//Función que muestra las peliculas en cards
 function mostrarPeliculas($pelicules){
     foreach ($pelicules as $pelicula) {
       $imgUrl = $pelicula["img"];
@@ -103,16 +102,15 @@ function mostrarPeliculas($pelicules){
     .trailer-btn a, .info-btn a{
       color: var(--textoRoj);
     }
-    /* .shadow-sm {
-      overflow: hidden;
-    }
-    .shadow-sm img{
-      object-fit: cover;
-    } */
     .card-body > div{
       gap: 1rem;
     }
-    
+    .main-header{
+      background: url('images/bg-image.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
   </style>
 
 
@@ -130,10 +128,10 @@ function mostrarPeliculas($pelicules){
     </div>
   </header>
 
-  <main>
+  <main class="main-header">
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto text-light">
           <h1 class="fw-bold">CARTELLERA</h1>
           <p>Ocine Màgic Badalona</p>
         </div>
