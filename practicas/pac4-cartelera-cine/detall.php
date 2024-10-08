@@ -116,22 +116,31 @@ function mostrarInformacioPelicula($pelicules){
         i.fa-imdb{
             font-size: 2rem;
         }
+        div#carouselExampleIndicators{
+            max-height: 292px;
+            max-width: 700px;
+            overflow: hidden;
+        }
+        .carousel-inner img{
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
-    <div class="card mb-3 mx-auto" style="max-width: 90rem;">
+    <div class="card mb-3 mx-auto p-2" style="max-width: 90rem;">
         <h1 class="card-title"><?php mostrarNombre(); ?></h1>
         <hr>
         <div class="row no-gutters">
             <div class="col-md-4 d-flex flex-column" style="gap: 1rem;">
                 <img src=<?php mostrarImagen($pelicules); ?> class="card-img" alt="...">
                 <a href="trailer.php?nom=<?php mostrarNombre(); ?>" target="_blank" class="text-dark border border-dark text-center w-100 p-1"><i class="fa fa-play-circle"></i> TRAILER</a>
+                <a class="btn btn-dark text-light w-100 p-1" href="index.php" role="button">Tornar</a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <?php mostrarInformacioPelicula($pelicules); ?>
                 </div>
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide p-2 w-75 mx-auto p-2" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>

@@ -24,8 +24,8 @@ function mostrarPeliculas($pelicules){
                 echo "</div>";
                 //Otro button group para los botones: Ver trailer y ver mes información (detalle pelicula)
                 echo "<div class='btn-group d-flex'>";
-                  echo "<a href='trailer.php?nom={$pelicula['nom']}' class='trailer-btn' target='_blank'><i class='fa-solid fa-play'></i></a>";
-                  echo "<a href='detall.php?nom={$pelicula['nom']}' class='info-btn' target='_blank'><i class='fa-solid fa-book'></i></i></a>";
+                   echo "<div class='trailer-btn'><a href='trailer.php?nom={$pelicula['nom']}' target='_blank'><i class='fa-solid fa-play'></i></a></div>";
+                   echo "<div class='info-btn'><a href='detall.php?nom={$pelicula['nom']}' target='_blank'><i class='fa-solid fa-book'></i></i></a></div>";
                 echo "</div>";
         echo "</div>";
         echo "</div>";
@@ -92,10 +92,23 @@ function mostrarPeliculas($pelicules){
     .trailer-btn, .info-btn{
       background-color: #000000;
       font-size: .75rem;
-      color: var(--textoRoj);
-      font-size: 1rem;
+      height: 2rem;
+      width: 2rem;
       padding: .5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
     }
+    .trailer-btn a, .info-btn a{
+      color: var(--textoRoj);
+    }
+    /* .shadow-sm {
+      overflow: hidden;
+    }
+    .shadow-sm img{
+      object-fit: cover;
+    } */
     .card-body > div{
       gap: 1rem;
     }

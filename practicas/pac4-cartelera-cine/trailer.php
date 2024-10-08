@@ -37,12 +37,16 @@ function mostrarVideoTrailer($pelicules){
             min-height: 100vh; 
             gap: 3rem;
         }
+        a:hover{
+            background-color: red;
+        }
     </style>
 </head>
 
 <body class="d-flex flex-column justify-content-center align-items-center">
+    <img src="images/cineLogo.png" alt="">
     <h1 class="">Trailer <?php mostrarNombre(); ?></h1>
-    <iframe width="80%" height="500px" src="<?php mostrarVideoTrailer($pelicules);?>" allow="autoplay" allowfullscreen></iframe>
+    <iframe width="510px" height="300px" src="<?php mostrarVideoTrailer($pelicules);?>" allow="autoplay" allowfullscreen class="p-2"></iframe>
     <a class="btn btn-dark" href="index.php" role="button">Tornar</a>
 </body>
 </html>
