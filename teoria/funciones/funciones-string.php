@@ -38,4 +38,52 @@ echo trim($cadena2);
 //obtiene una parte de una cadena
 echo "<br>";
 echo substr($cadena2, 4, 4);
+
+
+//10. implode
+echo "<br>";
+$array = ["Hola", "mundo", "php"];
+echo implode(" ", $array);
+
+//11. explode
+// transforma una cadena en un array (inverso de implode)
+echo "<br>";
+$cadena = "Hola,Mundo,Php";
+$array = explode(",", $cadena);
+print_r($array);
+
+
+//12. in_array() mira si existe o no en un array
+echo "<br>";
+$os = ["Mac", "NT", "Itix", "Linux"];
+if (in_array("Irix", $os)) {
+    echo "Existe Irix";
+}
+
+//13. array_search
+//busca un valor en un array y devuelve la clave correspondiente, si no está saca false
+echo "<br>";
+$array = ["manzana", "pera", "naranja"];
+echo array_search("naranja", $array);
+
+//14. array_map
+echo "<br>";
+$arraymap = [1, 2, 3, 4];
+$resultado = array_map(function($numero) {
+    return $numero * 2;
+}, $arraymap);
+print_r($resultado);
+
+
+//15. array_filter()
+echo "<br>";
+$arrayfilter = [1,2,3,4,5,6,7,8];
+$resultado = array_filter($arrayfilter, function($n){
+    return $n % 2 == 0;
+});
+print_r($resultado);
+
+
+
 ?> 
+
