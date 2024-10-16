@@ -6,5 +6,5 @@
         }
         echo "...";
     }
-    generarResumen("barnaclesCuarentaMil", 4);
+    generarResumen("GabrielBascope", 4);
 ?>
