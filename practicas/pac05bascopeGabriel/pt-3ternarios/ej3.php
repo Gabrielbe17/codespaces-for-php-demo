@@ -1,13 +1,10 @@
 <?php
 
+    $nombre = $_GET['name'];
     function mostrarNombreForm(){
-        if ($_GET['name'] == "") {
-            return "Introduce tu nombre.";
-        }else{
-            return $_GET['name'];
-        }
+        global $nombre;
+        return ($nombre != '') ? $nombre  : "placeholder: 'Introduce tu nombre.'";
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,8 +14,9 @@
     <title>Formulario</title>
 </head>
 <body>
+    <h1>CONTACTO</h1>
     <form action="#" method="GET">
-        <input type="text" name="name" id="" placeholder="Escribe tu nombre..." value=<?php mostrarNombreForm(); ?>>
+        <input type="text" name="name" <?php mostrarNombreForm(); ?>>
         <button>Enviar</button>
     </form>
 </body>
