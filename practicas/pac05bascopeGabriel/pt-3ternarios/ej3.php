@@ -3,7 +3,7 @@
     $nombre = $_GET['name'];
     function mostrarNombreForm(){
         global $nombre;
-        return ($nombre != '') ? $nombre  : "placeholder: 'Introduce tu nombre.'";
+        return (empty($nombre)) ? "value='Introduce tu nombre.'" : "value='{$nombre}'";
     }
 ?>
 <!DOCTYPE html>
