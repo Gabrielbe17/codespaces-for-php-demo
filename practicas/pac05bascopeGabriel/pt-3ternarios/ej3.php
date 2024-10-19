@@ -1,11 +1,3 @@
-<?php
-
-    $nombre = $_GET['name'];
-    function mostrarNombreForm(){
-        global $nombre;
-        return (empty($nombre)) ? "value='Introduce tu nombre.'" : "value='{$nombre}'";
-    }
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,7 +8,7 @@
 <body>
     <h1>CONTACTO</h1>
     <form action="#" method="GET">
-        <input type="text" name="name" <?php mostrarNombreForm(); ?>>
+        <input type="text" name="name" value="<?php echo (isset($_GET['name']) ? $_GET['name'] : 'Ingrese su nombre.')?>">
         <button>Enviar</button>
     </form>
 </body>
