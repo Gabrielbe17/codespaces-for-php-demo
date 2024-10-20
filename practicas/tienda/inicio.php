@@ -43,10 +43,10 @@
         </div>
 
         <div class="container">
-            <form class="row g-3 needs-validation d-flex flex-column align-items-center" action="" novalidate>
+            <form class="row g-3 needs-validation d-flex flex-column align-items-center" action="index.php" novalidate>
               <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Nombre: </label>
-                <input type="text" class="form-control" id="validationCustom01" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" value="" name="name" required>
                 <div class="valid-feedback">
                   Looks good!
                 </div>
@@ -63,7 +63,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon3">https://.../img.png</span>
                   </div>
-                  <input type="url" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                  <input type="url" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="url" required>
                 </div>
               </div>
 
