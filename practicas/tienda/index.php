@@ -22,6 +22,21 @@
             <h2>Productos disponibles</h2>
 
             <!--aqui va la tabla de productos -->
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Disponibilidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Producto -->
+                    <?php
+                    
+                    ?>
+                </tbody>
+            </table>
         </div>
 
 
@@ -52,7 +67,6 @@
         <!--Modal con la lista de productos que están disponibles -->
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <!--AQUI LA LISTA DE PRODUCTOS -->
-            
         </div>
 
         <!--aqui va un footer -->

@@ -13,7 +13,14 @@ Foto del perfil (usando la URL proporcionada) -->
 
 <?php
     function generarTablaProductos($productos){
+        echo "
+            <tr>
+                <th scope='row'>1</th>
+                <td></td>
+                <td></td>
+            </tr>
 
+        ";
     }
     function muestraInfoContacto($nombre, $telefono, $foto){
         echo "
