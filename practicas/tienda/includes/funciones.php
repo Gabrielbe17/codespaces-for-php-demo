@@ -1,26 +1,17 @@
-<!-- 1. generarTablaProductos($productos) :
-Recibe un array de productos y genera una tabla con las siguientes columnas:
-Nombre del producto (la primera letra en mayúscula)
-Precio (formateado con number_format )
-Disponibilidad (Usa un operador ternario para mostrar "En stock" o "Agotado"). Si está agotado, la fila de la tabla debe aparecer en color rojo.
-
-2. muestraInfoContacto($nombre, $telefono, $foto) :
-Muestra la información de contacto proporcionada en el formulario en un bloque debajo de la tabla de productos.
-El bloque debe incluir:
-Nombre
-Teléfono
-Foto del perfil (usando la URL proporcionada) -->
-
 <?php
     function generarTablaProductos($productos){
-        echo "
-            <tr>
-                <th scope='row'>1</th>
-                <td></td>
-                <td></td>
-            </tr>
-
-        ";
+        foreach ($productos as $producto) {
+            $nom = ucfirst($producto['nombre']);
+            $precio = number_format($producto['precio'], 2);
+            $disponible = ($producto['disponibilidad']) ? "<td>En stock</td>" : "<td>Agotado</td>";
+            $filaRoja = !($producto['disponibilidad']) ? "class='bg-danger text-light'" : '';
+            
+            echo "<tr ". $filaRoja.">";
+                echo "<th scope='row'>$nom</th>";
+                echo "<td>$precio</td>";
+                echo $disponible;
+            echo "</tr>";
+        }
     }
     function muestraInfoContacto($nombre, $telefono, $foto){
         echo "

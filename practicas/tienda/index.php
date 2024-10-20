@@ -1,5 +1,6 @@
-<?
+<?php
     include 'includes/funciones.php';
+    include 'data/productos.php';
 
     $nombre = (isset($_GET['name']) && (trim($_GET['name']) != '')) ? $_GET['name'] : 'Nombre no definido.';
     $tel = (isset($_GET['tel'])&& (trim($_GET['tel']) != '')) ? $_GET['tel'] : 'Número de teléfono no definido.';
@@ -11,8 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercadona productos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <?php include 'includes/header.php';?>
@@ -20,8 +21,7 @@
 
         <div>
             <h2>Productos disponibles</h2>
-
-            <!--aqui va la tabla de productos -->
+            <!--Tabla de Productos -->
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -31,9 +31,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Producto -->
+                    <!-- Listado en filas de los Productos -->
                     <?php
-                    
+                        generarTablaProductos($productos);
                     ?>
                 </tbody>
             </table>
@@ -44,9 +44,7 @@
         <!-- Button trigger modal -->
 
         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Mi perfil 🖐</button>
-    
         <!-- Modal que al clicar aparece info de contacto -->
-
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
             <div class="modal-dialog">
@@ -72,6 +70,7 @@
         <!--aqui va un footer -->
         <?php include 'includes/footer.php';?>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

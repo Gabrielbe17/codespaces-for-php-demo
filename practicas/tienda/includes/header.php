@@ -8,7 +8,7 @@
         <div>
             <!-- mensajes + avatar foto perfil --> 
             <div class="d-flex align-items-center">
-                <h2 class="me-3 mb-0 px-4">Bienvenido <?php echo (isset($_GET['name'])) ? $_GET['name'] : 'Alumno' ?>!</h2>
+                <h2 class="me-3 mb-0 px-4">Bienvenido, <?php echo (isset($_GET['name'])) ? $_GET['name'] : 'Alumno' ?>!</h2>
                 <img src= <?php echo (isset($_GET['url'])) ? $_GET['url'] : '' ?> alt="Avatar" class="rounded-circle" style="width: 50px; height: 50px;">
             </div>
             <!-- Navegación  -->
