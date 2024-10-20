@@ -32,7 +32,7 @@
         </div>
 
         <div class="container">
-            <form class="row g-3 needs-validation d-flex flex-column align-items-center" action="index.php" method="get" novalidate>
+            <form class="row g-3 needs-validation d-flex flex-column align-items-center" action="index.php" method="POST" novalidate>
               <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Nombre: </label>
                 <input type="text" class="form-control" id="validationCustom01" value="" name="name" required>

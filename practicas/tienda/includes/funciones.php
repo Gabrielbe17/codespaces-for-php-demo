@@ -5,11 +5,13 @@
             $precio = number_format($producto['precio'], 2);
             $disponible = ($producto['disponibilidad']) ? "<td>En stock</td>" : "<td>Agotado</td>";
             $filaRoja = !($producto['disponibilidad']) ? "class='bg-danger text-light'" : '';
-            
+            $categoria = $producto['categoria'];
+
             echo "<tr ". $filaRoja.">";
                 echo "<th scope='row'>$nom</th>";
                 echo "<td>$precio</td>";
                 echo $disponible;
+                echo "<td>".ucfirst($categoria)."</td>";
             echo "</tr>";
         }
     }

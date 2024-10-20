@@ -2,9 +2,9 @@
     include 'includes/funciones.php';
     include 'data/productos.php';
 
-    $nombre = (isset($_GET['name']) && (trim($_GET['name']) != '')) ? $_GET['name'] : 'Nombre no definido.';
-    $tel = (isset($_GET['tel'])&& (trim($_GET['tel']) != '')) ? $_GET['tel'] : 'Número de teléfono no definido.';
-    $foto = (isset($_GET['url'])&& (trim($_GET['url']) != '')) ? $_GET['url'] : 'Avatar no definido.';
+    $nombre = (isset($_POST['name']) && (trim($_POST['name']) != '')) ? $_POST['name'] : 'Nombre no definido.';
+    $tel = (isset($_POST['tel'])&& (trim($_POST['tel']) != '')) ? $_POST['tel'] : 'Número de teléfono no definido.';
+    $foto = (isset($_POST['url'])&& (trim($_POST['url']) != '')) ? $_POST['url'] : 'Avatar no definido.';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +28,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Disponibilidad</th>
+                    <th scope="col">Categoría</th>
                     </tr>
                 </thead>
                 <tbody>
