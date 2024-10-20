@@ -1,14 +1,3 @@
-<!-- 
- TODO: 
-    1. Crea una nueva página inicio.php que será la primera pantalla que vea el usuario.
-    2. Esta pantalla debe incluir un formulario que recoja:
-    Nombre
-    Teléfono
-    URL de la foto de perfil
-    3. Cuando el usuario envíe el formulario, debe ser redirigido a index.php 
--->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,18 +32,18 @@
         </div>
 
         <div class="container">
-            <form class="row g-3 needs-validation d-flex flex-column align-items-center" action="index.php" novalidate>
+            <form class="row g-3 needs-validation d-flex flex-column align-items-center" action="index.php" method="get" novalidate>
               <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Nombre: </label>
                 <input type="text" class="form-control" id="validationCustom01" value="" name="name" required>
-                <div class="valid-feedback">
-                  Looks good!
+                <div class="invalid-feedback">
+                  Introduzca un nombre válido.
                 </div>
               </div>
 
               <div class="col-md-4">
                 <label class="form-label" for="typePhone">Número de Teléfono: </label>
-                <input type="tel" id="typePhone" class="form-control" required>
+                <input type="tel" id="typePhone" class="form-control" name="tel" required>
               </div>
 
               <div class="col-md-4">
@@ -64,6 +53,9 @@
                     <span class="input-group-text" id="basic-addon3">https://.../img.png</span>
                   </div>
                   <input type="url" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="url" required>
+                  <div class="invalid-feedback">
+                    URL incorrecta.
+                  </div>
                 </div>
               </div>
 
@@ -88,10 +80,10 @@
         Array.prototype.slice.call(forms)
           .forEach(function (form) {
             form.addEventListener('submit', function (event) {
-              if (!form.checkValidity()) {
+              /*if (!form.checkValidity()) {
                 event.preventDefault()
                 event.stopPropagation()
-              }
+              }*/
 
               form.classList.add('was-validated')
             }, false)

@@ -1,5 +1,3 @@
-
-//TODO: 
 <!-- 1. generarTablaProductos($productos) :
 Recibe un array de productos y genera una tabla con las siguientes columnas:
 Nombre del producto (la primera letra en mayúscula)
@@ -16,5 +14,15 @@ Foto del perfil (usando la URL proporcionada) -->
 <?php
     function generarTablaProductos($productos){
 
+    }
+    function muestraInfoContacto($nombre, $telefono, $foto){
+        echo "
+            <div class='info-contacto'>
+                <p><strong>Nombre: </strong> $nombre</p>
+                <p><strong>Teléfono: </strong> $telefono</p>
+                <p><strong>Avatar: </strong></p>
+                <img src='$foto' alt='Avatar no válido.'>
+            </div>
+        ";
     }
 ?>

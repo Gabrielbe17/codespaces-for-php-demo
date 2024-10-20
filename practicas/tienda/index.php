@@ -1,3 +1,10 @@
+<?
+    include 'includes/funciones.php';
+
+    $nombre = (isset($_GET['name']) && (trim($_GET['name']) != '')) ? $_GET['name'] : 'Nombre no definido.';
+    $tel = (isset($_GET['tel'])&& (trim($_GET['tel']) != '')) ? $_GET['tel'] : 'Número de teléfono no definido.';
+    $foto = (isset($_GET['url'])&& (trim($_GET['url']) != '')) ? $_GET['url'] : 'Avatar no definido.';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,16 +41,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <!-- AQUI VA LA INFORMACIÓN DE CONTACTO -->
+                        <?php
+                            muestraInfoContacto($nombre, $tel, $foto);
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
 
         <!--Modal con la lista de productos que están disponibles -->
-
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <!--AQUI LA LISTA DE PRODUCTOS -->
+            
         </div>
 
         <!--aqui va un footer -->
