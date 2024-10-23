@@ -17,11 +17,15 @@
                 display: flex;
                 align-items: center;
                 min-height: 100vh;
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('assets/harrypotter.jpeg');
+                background-repeat: no-repeat;
+                background-size: cover; 
+
             }
         </style>
     </head>
     <body>
-        <div class="container">
+        <div class="container text-light">
             <!-- FORMULARIO -->
             <div class="container-fluid">
                 <div class="container text-center my-5">
@@ -35,19 +39,13 @@
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label">Nom: </label>
                             <input type="text" class="form-control" id="validationCustom01" value="" name="nom" required>
-                            <div class="invalid-feedback">
-                                Introdueix un nom.
-                            </div>
                         </div>
 
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label">Cognom: </label>
                             <input type="text" class="form-control" id="validationCustom01" value="" name="cognom" required>
-                            <div class="invalid-feedback">
-                                Introdueix un cognom.
-                            </div>
                         </div>
-
+                        <br>
                         <div class="col-md-4 text-center">
                             <button class="btn btn-primary w-100" type="submit">Enviar</button>
                         </div>
@@ -55,5 +53,26 @@
                 </div>
             </div>
         </div>
+        <script>
+            (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+                })
+            })()
+        </script>
     </body>
 </html>
