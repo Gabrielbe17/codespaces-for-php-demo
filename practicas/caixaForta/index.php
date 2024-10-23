@@ -22,12 +22,11 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center mb-4">Benvinguts a Hogwarts</h1>
-        
             <!-- FORMULARIO -->
             <div class="container-fluid">
                 <div class="container text-center my-5">
                     <h1>Hola!</h1>
+                    <h1 class="text-center mb-4">Benvinguts a Hogwarts</h1>
                     <p>Si us plau, completa els següents camps.</p>
                 </div>
 
