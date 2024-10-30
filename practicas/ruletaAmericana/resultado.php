@@ -13,7 +13,7 @@
 
     $numGanador = generarNumeroGanador();
 
-    //procesar las apuestas
+    //FUNCTION QUE procesa las apuestas, determina si la apuesta es ganadora o no.
     function procesarApuesta($tipoApuesta){
         global $numGanador;
         global $valorApuesta;
@@ -22,71 +22,76 @@
             case 'Rojo/Negro':
                 //verificar si el numero generado es rojo o negro, excluyendo el 0
                 $colorNumGenerado = comprobarColorNumero($numGanador);
-                echo ($colorNumGenerado == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
+                return  ($colorNumGenerado == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
                 break;  
             case 'Par/Impar':
                 // se verifica si el numero generado es par y el usuario ha introducido par, o impar y el usuario ha introducido impar
-                echo (($numGanador % 2 == 0 && strcmp($valorApuesta, "Par") == 0) || ($numGanador % 2 != 0 && strcmp($valorApuesta, "Impar") == 0)) ? "Has ganado la apuesta!": "Has perdido!";
+                return (($numGanador % 2 == 0 && strcmp($valorApuesta, "Par") == 0) || ($numGanador % 2 != 0 && strcmp($valorApuesta, "Impar") == 0)) ? "Has ganado la apuesta!": "Has perdido!";
 
                 break;
             case 'Pasa/Falta':
                 //si el usuario indica falta y el numero generado es meno o igual a 18, gana la apuesta. Si indica que Pasa, si el numero ganador es mayor que 18, gana la apuesta.
                 if (strcmp($valorApuesta, "Falta") == 0 && $numGanador > 0) {
-                    echo ($numGanador > 0 && $numGanador <= 18) ? "Has ganado la apuesta!": "Has perdido!";
+                    return ($numGanador > 0 && $numGanador <= 18) ? "Has ganado la apuesta!": "Has perdido!";
                 }else{
-                    echo ($numGanador > 18) ? "Has ganado la apuesta!": "Has perdido!";
+                    return ($numGanador > 18) ? "Has ganado la apuesta!": "Has perdido!";
                 }
                 break;
             case 'Pleno':
                 echo ($numGanador == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
                 break;
             case 'Docena':
-                //corregir
                 if (strcmp($valorApuesta, "1a docena") == 0) {
-                    echo ($numGanador > 0 && $numGanador <= 12) ? "Has ganado la apuesta!": "Has perdido!";
+                    return ($numGanador > 0 && $numGanador <= 12) ? "Has ganado la apuesta!": "Has perdido!";
                 }else if (strcmp($valorApuesta, "2a docena") == 0) {
-                    echo ($numGanador > 12 && $numGanador <= 24) ? "Has ganado la apuesta!": "Has perdido!";
+                    return  ($numGanador > 12 && $numGanador <= 24) ? "Has ganado la apuesta!": "Has perdido!";
                 }else{
-                    echo ($numGanador > 24) ? "Has ganado la apuesta!": "Has perdido!";
+                    return ($numGanador > 24) ? "Has ganado la apuesta!": "Has perdido!";
                 }
                 break;
             case 'Columna':
-                //TODO: corregir esta apuesta
-
                 if (strcmp($valorApuesta, "1a columna") == 0) {
                     // del 1 al 34, con step de 3
                     for ($i=1; $i <= 34; $i+=3) { 
                         if ($numGanador == $i) {
-                            echo "Has ganado la apuesta!";
-                            break;
+                            return "Has ganado la apuesta!";
                         }
                     }
-                    echo "Has perdido!";
+                    return "Has perdido!";
                 }else if (strcmp($valorApuesta, "2a columna") == 0) {
                     //del 2 al 35, con step de 3
                     for ($i=2; $i <= 35; $i+=3) { 
                         if ($numGanador == $i) {
-                            echo "Has ganado la apuesta!";
+                            return "Has ganado la apuesta!";
                             break;
                         }
                     }
-                    echo "Has perdido!";
+                    return "Has perdido!";
                 }else{
                     //del 3 al 36, con step de 3
                     for ($i=3; $i <= 36; $i+=3) { 
                         if ($numGanador == $i) {
-                            echo "Has ganado la apuesta!";
+                            return "Has ganado la apuesta!";
                             break;
                         }
                     }
-                    echo "Has perdido!";
+                    return "Has perdido!";
                 }
                 break;
             case 'Dos docenas':
-            
+                //se puede apostar a dos docenas, es decir, la 1 y la 2 o la 2 y la 3.
+                if (strcmp($valorApuesta, "1a y 2a dozena") == 0) {
+                    return ($numGanador > 0 && $numGanador <= 24) ? "Has ganado la apuesta!" : "Has perdido!";
+                }else{
+                    return ($numGanador > 12 && $numGanador <= 36) ? "Has ganado la apuesta!" : "Has perdido!";
+                }
                 break;
             case 'Dos columnas':
-            
+                if (strcmp($valorApuesta, "1a y 2a columna") == 0) {
+
+                }else{
+                    
+                }
                 break;
             case 'Seisena':
             
@@ -148,7 +153,7 @@
             <p>El jugador ha elegido el tipo de apuesta: <?php echo $tipoApuesta?></p>
             <p>El jugador ha apostado a: <?php echo $valorApuesta?></p>
             <p>El numero ganador es... <?php echo $numGanador;?> !!</p>
-            <h3> <?php procesarApuesta($tipoApuesta)?></h3>
+            <h3> <?php echo procesarApuesta($tipoApuesta)?></h3>
         </div>
     </div>
 </body>
