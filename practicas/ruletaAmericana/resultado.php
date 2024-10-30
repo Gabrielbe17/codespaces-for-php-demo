@@ -40,13 +40,49 @@
             }
             break;
         case 'Pleno':
-           
+            echo ($numGanador == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
             break;
         case 'Docena':
-          
+            //corregir
+            if (strcmp($valorApuesta, "1a docena") == 0) {
+                echo ($numGanador > 0 && $numGanador <= 12) ? "Has ganado la apuesta!": "Has perdido!";
+            }else if (strcmp($valorApuesta, "2a docena") == 0) {
+                echo ($numGanador > 12 && $numGanador <= 24) ? "Has ganado la apuesta!": "Has perdido!";
+            }else{
+                echo ($numGanador > 24) ? "Has ganado la apuesta!": "Has perdido!";
+            }
             break;
         case 'Columna':
-          
+            //TODO: corregir esta apuesta
+
+            if (strcmp($valorApuesta, "1a columna") == 0) {
+                // del 1 al 34, con step de 3
+                for ($i=1; $i <= 34; $i+=3) { 
+                    if ($numGanador == $i) {
+                        echo "Has ganado la apuesta!";
+                        break;
+                    }
+                }
+                echo "Has perdido!";
+            }else if (strcmp($valorApuesta, "2a columna") == 0) {
+                //del 2 al 35, con step de 3
+                for ($i=2; $i <= 35; $i+=3) { 
+                    if ($numGanador == $i) {
+                        echo "Has ganado la apuesta!";
+                        break;
+                    }
+                }
+                echo "Has perdido!";
+            }else{
+                //del 3 al 36, con step de 3
+                for ($i=3; $i <= 36; $i+=3) { 
+                    if ($numGanador == $i) {
+                        echo "Has ganado la apuesta!";
+                        break;
+                    }
+                }
+                echo "Has perdido!";
+            }
             break;
         case 'Dos docenas':
            
