@@ -72,4 +72,3 @@ function mostrarPosiblesApuestas(tipoApuesta){
     }
     return options;
 }
-
