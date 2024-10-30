@@ -9,7 +9,7 @@
     }
 
     // $numGanador = generarNumeroGanador(); //se ha de determinar si este numero generado es rojo o negro, excepto si es 0 (verde)
-    $numGanador = 36;
+    $numGanador = generarNumeroGanador();
     echo "El número ganador es: ". $numGanador. "<br><br>";
 
     $tipoApuesta = $_GET['tipoApuesta'];
