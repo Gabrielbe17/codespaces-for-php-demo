@@ -8,21 +8,23 @@
         return $num;
     }
 
-    $numGanador = generarNumeroGanador(); //se ha de determinar si este numero generado es rojo o negro, excepto si es 0 (verde)
-    echo "El número ganador es: ". $numGanador. "<br>";
+    // $numGanador = generarNumeroGanador(); //se ha de determinar si este numero generado es rojo o negro, excepto si es 0 (verde)
+    $numGanador = 36;
+    echo "El número ganador es: ". $numGanador. "<br><br>";
 
     $tipoApuesta = $_GET['tipoApuesta'];
     $valorApuesta = $_GET['valorApuesta'];
     $cantidadApuesta = $_GET['cantidad']; 
 
-
-    echo $cantidadApuesta;
+    echo "A qué has apostado?: " . $valorApuesta . "<br>";
+    echo "Cantidad Depositada: ".$cantidadApuesta . "<br>";
 
     //procesar las apuestas
     switch ($tipoApuesta) {
         case 'Rojo/Negro':
             //verificar si el numero generado es rojo o negro, excluyendo el 0
-            comprobarColorNumero($numGanador);
+            $colorNumGenerado = comprobarColorNumero($numGanador);
+            echo ($colorNumGenerado == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
             break;  
         case 'Par/Impar':
            
@@ -64,7 +66,7 @@
     function comprobarColorNumero($num){
         $color = '';
 
-        if ($num <= 10 || $num >= 19) {
+        if (($num > 0 && $num <= 10) || ($num >= 19 && $num <= 29)){
             $color = ($num % 2 == 0) ? "Negro" : "Rojo";
         }else{
             $color = ($num % 2 == 0) ? "Rojo" : "Negro";

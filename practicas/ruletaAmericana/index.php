@@ -127,7 +127,7 @@
         <form action="resultado.php" method="get" class="border p-3 bg-body">
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Tipo apuesta</label>
-                <select class="form-control" id="selectTipoApuesta" name="tipoApuesta">
+                <select class="form-control" id="selectTipoApuesta" name="tipoApuesta" required>
                     <option>Rojo/Negro</option>
                     <option>Par/Impar</option>
                     <option>Pasa/Falta</option>
@@ -146,7 +146,7 @@
             <!-- Select que se genera DINÁMICAMENTE, segun qué tipo de apuesta escoje el usuario -->
             <div class="form-group">
                 <label for="exampleFormControlSelect2">¿A qué apuestas?</label>
-                <select class="form-control" id="selectPosiblesApuestas" name="valorApuesta">
+                <select class="form-control" id="selectPosiblesApuestas" name="valorApuesta" required>
 
                 </select>
             </div>
@@ -155,7 +155,7 @@
             <div data-mdb-input-init class="form-group" style="width: 22rem;">
                 <!-- <i class="fas fa-dollar-sign trailing"></i> -->
                 <label class="form-label" for="form1">Cantidad de dinero</label>
-                <input type="number" id="form1" class="form-control form-icon-trailing" name="cantidad" min="1">
+                <input type="number" id="form1" class="form-control form-icon-trailing" name="cantidad" min="1" required>
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Enviar</button>
