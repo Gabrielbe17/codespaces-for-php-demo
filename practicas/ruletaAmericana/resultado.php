@@ -27,10 +27,17 @@
             echo ($colorNumGenerado == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
             break;  
         case 'Par/Impar':
-           
+            // se verifica si el numero generado es par y el usuario ha introducido par, o impar y el usuario ha introducido impar
+            echo (($numGanador % 2 == 0 && strcmp($valorApuesta, "Par") == 0) || ($numGanador % 2 != 0 && strcmp($valorApuesta, "Impar") == 0)) ? "Has ganado la apuesta!": "Has perdido!";
+
             break;
         case 'Pasa/Falta':
-          
+            //si el usuario indica falta y el numero generado es meno o igual a 18, gana la apuesta. Si indica que Pasa, si el numero ganador es mayor que 18, gana la apuesta.
+            if (strcmp($valorApuesta, "Falta") == 0 && $numGanador > 0) {
+                echo ($numGanador > 0 && $numGanador <= 18) ? "Has ganado la apuesta!": "Has perdido!";
+            }else{
+                echo ($numGanador > 18) ? "Has ganado la apuesta!": "Has perdido!";
+            }
             break;
         case 'Pleno':
            
