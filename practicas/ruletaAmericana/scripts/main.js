@@ -52,12 +52,17 @@ function mostrarPosiblesApuestas(tipoApuesta){
             <option>2a y 3a columna</option>`
             break;
         case 'Seisena':
-            options = `<option></option>
-            <option></option>`
+            for (let i = 1; i <= 6; i++) {
+                options += `
+                    <option>${i}a seisena</option>
+                `;
+            }
             break;
         case 'Cuadro':
-            options = `<option></option>
-            <option></option>`
+            //12 cuadrados
+            for (let i = 1; i <= 12; i++) {
+                options += `<option> Cuadrado ${i}</option>`;
+            }
             break;
         case 'Transversal':
             options = `<option></option>

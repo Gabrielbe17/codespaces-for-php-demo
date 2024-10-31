@@ -87,14 +87,21 @@
                 }
                 break;
             case 'Dos columnas':
-                if (strcmp($valorApuesta, "1a y 2a columna") == 0) {
+                $primeraCol = range(1, 34, 3);
+                $segundaCol = range(2, 35, 3);
+                $terceraCol = range(3, 36, 3);
 
+                if (strcmp($valorApuesta, "1a y 2a columna") == 0) {
+                    //del 1 al 34, con step de 3 , y del 2 al 35 con step de 3
+                    echo (in_array($numGanador, $primeraCol) || in_array($numGanador, $segundaCol)) ? "Has ganado la apuesta!" : "Has perdido!";
                 }else{
-                    
+                    // del 2 al 34, con step de 3 , y del 3 al 36 con step de
+                    echo (in_array($numGanador, $segundaCol) || in_array($numGanador, $terceraCol)) ? "Has ganado la apuesta!" : "Has perdido!";
                 }
                 break;
             case 'Seisena':
-            
+                // 6 seisenas
+                
                 break;
             case 'Cuadro':
             
@@ -118,6 +125,9 @@
             $color = ($num % 2 == 0) ? "Rojo" : "Negro";
         }
         return $color;
+    }
+    function comprobarSeisena(){
+
     }
 
 ?>
