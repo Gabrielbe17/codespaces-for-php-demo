@@ -15,4 +15,14 @@ $edad = $_POST['age'];
 
 echo "Hola ". $nombre . " tienes " . $edad . "años";
 
+//-------
+
+foreach ($_POST['asignatura'] as $asignatura){
+    echo $asignatura. "<br>";
+}
+
+foreach ($_POST['frutas'] as $fruta){
+    echo $fruta. "<br>";
+}
+
 ?>
