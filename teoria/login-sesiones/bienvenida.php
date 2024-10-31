@@ -2,6 +2,8 @@
     session_start();
     echo "Bienvenido, " . $_SESSION['username'];
 
+    var_dump($_SESSION['username']); // muestra el contenido de la variable de sesión
+
     if (!isset($_SESSION['username'])) {
         header('Location: login.php'); //redireccionamiento a la página de login
         exit(); 
@@ -18,7 +20,7 @@
 <body>
     <header>
         <!-- sintaxis, <...= es para hacer un echo -->
-        <h1>Bienvenido <?= $_SESSION['username']?></h1> 
+        <h1>Bienvenido <?php echo $_SESSION['username']?></h1> 
         <a href="logout.php">Cerrar sesión</a>
     </header>
 </body>
