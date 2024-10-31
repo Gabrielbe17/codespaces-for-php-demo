@@ -146,6 +146,20 @@
         .container{
             gap: 1rem;
         }
+        img#ruleta{
+            animation: rotar 2s linear;
+        }
+        @keyframes rotar {
+            0%{
+                transform: rotate(30deg);
+            }
+            50%{
+                transform: rotate(20deg);
+            }
+            100%{
+                transform: rotate(0deg);
+            }
+        }
     </style>
 </head>
 <body class="d-flex justify-content-center align-items-center">
@@ -153,7 +167,7 @@
         <h1>Resultado Apuesta</h1>
         <div class="row">
             <div class="col">
-                <img src="assets/ruleta.png" alt="" style="width: 18rem;">
+                <img src="assets/ruleta.png" alt="" style="width: 18rem;" id="ruleta">
             </div>
             <div class="col">
                 <img src="assets/apuestas-ruleta.jpg" alt="" style="width: 30rem;">

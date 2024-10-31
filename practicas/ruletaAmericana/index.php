@@ -22,6 +22,17 @@
             padding: .5rem 1rem;
             width: 100%;
         }
+        img#ruleta{
+            animation: rotar 2s infinite linear;
+        }
+        @keyframes rotar {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -29,7 +40,7 @@
         <!-- tabla -->
         <div class="row d-flex justify-content-center align-items-center flex-wrap">
             <div class="col-md-4">
-                <img src="assets/ruleta.png" alt="" style="width: 18rem;">
+                <img src="assets/ruleta.png" alt="" style="width: 18rem;" id="ruleta">
             </div>
             <div class="col-md-4">
                 <img src="assets/apuestas-ruleta.jpg" alt="apuestas" style="width: 30rem;">
