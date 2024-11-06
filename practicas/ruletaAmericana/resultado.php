@@ -102,21 +102,36 @@
             case 'Seisena':
                    // 11 seisenas
                 /*
-                1a seisena: 123, 456
-                ...
+                    1a seisena: 123, 456
+                    ...
 
-                La seisena 1: empieza con el numero  1
-                la seisena 2: empieza con el numero 4
-                la seisena 3: empieza con el numero 7
-                la seisena 4: empieza con el numero 10
-                ...
-                La seisena 11: empieza con el numero 31
+                    La seisena 1: empieza con el numero  1
+                    la seisena 2: empieza con el numero 4
+                    la seisena 3: empieza con el numero 7
+                    la seisena 4: empieza con el numero 10
+                    la seisena 5: empieza con el numero 13
+                    ...
+                    La seisena 11: empieza con el numero 31
 
-                El usuario pasará como parametro por url el numero de la seisena a la que apuesta
+                    El usuario pasará como parametro por url el numero de la seisena a la que apuesta
+
                 */ 
-                for ($i=0; $i <= 11; $i++) { 
-                    
-                }
+                // $seisenas = [
+                //     [],
+                //     [],
+                //     [],
+                //     [],
+                //     [],
+                //     [],
+                //     [],
+                //     [],
+                //     [],
+                //     [],
+                //     []
+                // ];
+                // $empieza = $numSeleccionado;
+                echo intval($valorApuesta);
+                // $seisenaSeleccionada = range($empieza, $empieza + 6);
                 
                 break;
             case 'Cuadro':
