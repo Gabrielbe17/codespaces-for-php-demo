@@ -116,22 +116,18 @@
                     El usuario pasará como parametro por url el numero de la seisena a la que apuesta
 
                 */ 
-                // $seisenas = [
-                //     [],
-                //     [],
-                //     [],
-                //     [],
-                //     [],
-                //     [],
-                //     [],
-                //     [],
-                //     [],
-                //     [],
-                //     []
-                // ];
-                // $empieza = $numSeleccionado;
-                echo intval($valorApuesta);
-                // $seisenaSeleccionada = range($empieza, $empieza + 6);
+
+                //TODO: obtener valor numerico seisena
+                $string = str_split($valorApuesta); //convertir valor apuesta a array
+                $pos = implode('', array_filter($string, 'ctype_digit')); //filtrar array string para que devuelva un array filtrado que muestre solo los digitos, y despues hacerle un implode para convertirlo a string
+                
+                $arrEmpieza = range(1,31, 3); //array que contiene las posiciones iniciales de cada seisena
+                $empieza = $arrEmpieza[$pos-1];
+
+                $seisenaSeleccionada = range($empieza , $empieza + 5);
+                // print_r($seisenaSeleccionada);
+
+                echo (in_array($numGanador, $seisenaSeleccionada)) ? "Has ganado la apuesta!" : "Has perdido!";
                 
                 break;
             case 'Cuadro':
