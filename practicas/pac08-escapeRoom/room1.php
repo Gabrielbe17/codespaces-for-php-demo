@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    
+    include 'array.php';
+
+    echo $_SESSION['nivel'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,8 +16,8 @@
 <body class="d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4" style="width: 22rem;">
         <h2 class="card-title text-center">Habitación 1</h2>
-        <p class="card-text">Endevinalla: Tengo ciudades, pero no casas. Tengo montañas, pero no árboles. Tengo agua, pero no peces. ¿Qué soy?</p>
-        <form method="POST">
+        <!-- <p class="card-text"><?php echo elegirPreguntaAleatoria($_SESSION['nivel'])['pregunta']?></p> -->
+        <form method="">
             <div class="mb-3">
                 <input type="text" name="answer" class="form-control" required placeholder="Respuesta">
             </div>
