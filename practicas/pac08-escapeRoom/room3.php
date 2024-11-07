@@ -10,7 +10,7 @@
     <div class="card p-4" style="width: 22rem;">
         <h2 class="card-title text-center">Habitación 3</h2>
         <p class="card-text"></p>
-        <form method="POST">
+        <form action="" method="">
             <div class="mb-3">
                 <input type="text" name="answer" class="form-control" required placeholder="Respuesta">
             </div>

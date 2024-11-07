@@ -1,13 +1,10 @@
 <?php
-    session_name('Escape-Room');
     session_start();
 
     $_SESSION['nom'] = $_GET['nom'];
     $_SESSION['nivel'] = $_GET['nivell'];
     
-
-    // header('Locaion: room1.php');
-    // echo $_SESSION
+    var_dump($_SESSION['nivel']);
 ?>
 
 

@@ -3,7 +3,16 @@
     
     include 'array.php';
 
-    echo $_SESSION['nivel'];
+    var_dump($_SESSION['nivel']);
+
+
+    // if (!isset($_SESSION['nivel'])) {
+    //     // header('Location: index.php');
+    //     // exit();
+    // }
+    // if (!isset($_GET['answer'])) {
+        
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,8 +25,8 @@
 <body class="d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4" style="width: 22rem;">
         <h2 class="card-title text-center">Habitación 1</h2>
-        <!-- <p class="card-text"><?php echo elegirPreguntaAleatoria($_SESSION['nivel'])['pregunta']?></p> -->
-        <form method="">
+        <p class="card-text"><?php echo elegirPreguntaAleatoria($_SESSION['nivel'])['pregunta']?></p>
+        <form action="#" method="">
             <div class="mb-3">
                 <input type="text" name="answer" class="form-control" required placeholder="Respuesta">
             </div>
@@ -32,5 +41,3 @@
     </div>
 </body>
 </html>
-
-<!-- Pagina de ejemplo para una room -->
