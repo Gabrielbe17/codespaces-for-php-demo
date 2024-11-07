@@ -3,16 +3,14 @@
     
     include 'array.php';
 
-    var_dump($_SESSION['nivel']);
+    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //     $_SESSION['respuesta'] = $_POST['answer'];
 
+    //     if ($_SESSION['respuesta']  === elegirPreguntaAleatoria($_SESSION['nivel']['resposta']))  {
 
-    // if (!isset($_SESSION['nivel'])) {
-    //     // header('Location: index.php');
-    //     // exit();
+    //     }
     // }
-    // if (!isset($_GET['answer'])) {
-        
-    // }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,7 +24,7 @@
     <div class="card p-4" style="width: 22rem;">
         <h2 class="card-title text-center">Habitación 1</h2>
         <p class="card-text"><?php echo elegirPreguntaAleatoria($_SESSION['nivel'])['pregunta']?></p>
-        <form action="#" method="">
+        <form action="#" method="POST">
             <div class="mb-3">
                 <input type="text" name="answer" class="form-control" required placeholder="Respuesta">
             </div>
@@ -37,6 +35,9 @@
         <!-- <div class="alert alert-success mt-3">¡Felicidades! ¡Has completado el juego!</div>
 
         <div class='alert alert-danger mt-3'>Respuesta incorrecta. ¡Inténtalo de nuevo!</div> -->
+        <?php
+            
+        ?>
 
     </div>
 </body>

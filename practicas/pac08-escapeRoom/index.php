@@ -1,10 +1,16 @@
 <?php
     session_start();
-
-    $_SESSION['nom'] = $_GET['nom'];
-    $_SESSION['nivel'] = $_GET['nivell'];
     
-    var_dump($_SESSION['nivel']);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        
+        $_SESSION['nom'] = $_POST['nom'];
+        $_SESSION['nivel'] = $_POST['nivell'];
+        $_SESSION['current_room'] = 
+        
+        header('Location: room1.php');
+        exit();  
+    }
+    // session_destroy();
 ?>
 
 
@@ -19,7 +25,7 @@
 <body class="d-flex justify-content-center align-items-center vh-100" style="background-image: url('https://basementescaperoom.com/los-angeles/template/images/room-header-bg-thebasement.jpg'); background-size:cover; background-repeat: no-repeat;">
     <div class="card p-4 bg-dark text-white" style="width: 22rem;">
         <h2 class="card-title text-center">Benvingut!</h2>
-        <form action="room1.php">
+        <form action="" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Nom:</label>
                 <input type="text" name="username" id="username" class="form-control" required>

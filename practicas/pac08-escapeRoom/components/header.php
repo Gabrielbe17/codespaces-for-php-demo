@@ -1,0 +1,1 @@
+<!-- un header amb el nom de l'usuari, el nivell de dificultat i la seva foto de perfil. -->
