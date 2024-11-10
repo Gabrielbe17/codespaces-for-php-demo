@@ -100,7 +100,6 @@
                 }
                 break;
             case 'Seisena':
-                   // 11 seisenas
                 /*
                     1a seisena: 123, 456
                     ...
@@ -108,16 +107,11 @@
                     La seisena 1: empieza con el numero  1
                     la seisena 2: empieza con el numero 4
                     la seisena 3: empieza con el numero 7
-                    la seisena 4: empieza con el numero 10
-                    la seisena 5: empieza con el numero 13
                     ...
-                    La seisena 11: empieza con el numero 31
-
-                    El usuario pasará como parametro por url el numero de la seisena a la que apuesta
 
                 */ 
 
-                //TODO: obtener valor numerico seisena
+                //obtener valor numerico seisena
                 $string = str_split($valorApuesta); //convertir valor apuesta a array
                 $pos = implode('', array_filter($string, 'ctype_digit')); //filtrar array string para que devuelva un array filtrado que muestre solo los digitos, y despues hacerle un implode para convertirlo a string
                 
@@ -154,13 +148,39 @@
         }
         return $color;
     }
-    function comprobarSeisena(){
-
-    }
-
 
     // TODO: FUNCION que calcule las GANANCIAS SEGUN EL TIPO DE APUESTA Y LA CANTIDAD APOSTADA
+    function calcularGanancias($tipApuesta){
+        global $cantidadApuesta;
 
+        $apuesta1x1 = ['Rojo/Negro', 'Par/Impar', 'Pasa/Falta'];
+        $apuesta2x1 = ['Docena', 'Columna'];
+        $apuesta05x1 = ['Dos Docenas', 'Columnas'];
+
+        if (procesarApuesta($tipApuesta) == "Has ganado la apuesta!") {
+            if (in_array($tipApuesta, $apuesta1x1)) {
+                return 'Has recuperado la apuesta: ' . $cantidadApuesta . '€!';
+            }else if (in_array($tipApuesta, $apuesta2x1)) {
+                $ganancia = $cantidadApuesta * 2;
+                return 'Has ganado el doble: ' . $ganancia . '€!';
+            }else if (in_array($tipApuesta, $apuesta05x1)) {
+                $ganancia = $cantidadApuesta * 0.5;
+                return 'Has ganado la mitad: ' . $ganancia . '€!';
+            }else if ($tipApuesta == 'Seisena') {
+                $ganancia = $cantidadApuesta * 5;
+                return 'Has ganado la mitad: ' . $ganancia . '€!';
+            }else if ($tipApuesta == 'Cuadro') {
+                return '';
+            }else if ($tipApuesta == 'Transversal') {
+                return '';
+            }else if ($tipApuesta == 'Caballo') {
+                return '';
+            }else {
+                $ganancia = $cantidadApuesta * 35;
+                return 'Has ganado: ' . $ganancia . '€!';
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -207,8 +227,10 @@
         <div class="row">
             <p>El jugador ha elegido el tipo de apuesta: <?php echo $tipoApuesta?></p>
             <p>El jugador ha apostado a: <?php echo $valorApuesta?></p>
+            <p>El jugador ha apostado: <?= $cantidadApuesta . '€!'?></p>
             <p>El numero ganador es... <?php echo $numGanador;?> !!</p>
             <h3> <?php echo procesarApuesta($tipoApuesta)?></h3>
+            <h4><?= calcularGanancias($tipoApuesta)?></h4>
         </div>
     </div>
 </body>
