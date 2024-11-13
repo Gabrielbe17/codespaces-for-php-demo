@@ -5,7 +5,7 @@
         
         $_SESSION['nom'] = $_POST['nom'];
         $_SESSION['nivel'] = $_POST['nivell'];
-        $_SESSION['current_room'] = 
+        $_SESSION['current_room'] = 1;
         
         header('Location: room1.php');
         exit();  
