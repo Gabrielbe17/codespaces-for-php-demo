@@ -4,7 +4,8 @@ session_start();
 // Datos de usuario predefinidos (esto normalmente se obtendría de una base de datos).
 $usuarios = [
     ["username" => "admin", "password" => "adminpass", "role" => "admin"],
-    ["username" => "reader", "password" => "readerpass", "role" => "lector"]
+    ["username" => "reader", "password" => "readerpass", "role" => "lector"],
+    ["username" => "gabriel", "password" => "gabriel", "role" => "admin"]
 ];
 
 $username = $_POST['username'];

@@ -1,8 +1,13 @@
 <?php
-
+    session_start();
 
 // Verifica si el usuario ha iniciado sesión; si no, redirige a login.php.
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
 
+$name = $_SESSION['username'];
 // Verifica el rol del usuario
 
 // Obtener la lista de libros desde la sesión
@@ -25,7 +30,7 @@
             <div class="d-flex align-items-center">
                 <img src="aqui va la foto de perfil" alt="Foto de perfil" class="w-25 rounded-circle me-3">
                 <div>
-                    <h4 class="m-0">👋 Bienvenido, AQUÍ VA EL USUARIO!</h4>
+                    <h4 class="m-0">👋 Bienvenido, <?= $name?></h4>
                     <!-- SI ES ADMIN.... -->
                         <p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i> Admin ✏️</p>
                    <!-- SINO.... -->
