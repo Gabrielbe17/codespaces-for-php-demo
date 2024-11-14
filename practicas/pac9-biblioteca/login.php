@@ -10,6 +10,7 @@ $usuarios = [
 $username = $_POST['username'];
 $pass = $_POST['password'];
 $role = null;
+$error = '';
 
 // Procesamiento del formulario.
 // Validación de credenciales.    
@@ -26,15 +27,18 @@ function validateUser($username, $pass){
     return false;
 }
 
-if (validateUser($username, $pass)) {
-    $_SESSION['username'] = $_POST['username'];
-    $_SESSION['role'] = $role;
-    $_SESSION['photo'] = $_POST['urlpicture'];
-
-    header('Location: home.php');
-    exit();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (validateUser($username, $pass)) {
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['role'] = $role;
+        $_SESSION['photo'] = $_POST['urlpicture'];
+    
+        header('Location: home.php');
+        exit();
+    }
+    // Muestra un error si las credenciales no son válidas.
+    $error = "Usuario o contraseña incorrectos.";
 }
-
 
 ?>
 
