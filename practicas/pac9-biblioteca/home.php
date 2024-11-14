@@ -8,10 +8,14 @@ if (!isset($_SESSION['username'])) {
 }
 
 $name = $_SESSION['username'];
+$url = $_SESSION['photo'];
+
 // Verifica el rol del usuario
 
 // Obtener la lista de libros desde la sesión
-
+function mostrarRol(){
+    return ($_SESSION['role'] == 'admin' ? "<p class='text-muted m-0'><i class='fas fa-user-shield text-success'></i> Admin ✏️</p>" : " <p class='text-muted m-0'>Lector 📚</p>");
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +32,10 @@ $name = $_SESSION['username'];
     <header class="bg-light py-3 mb-4 shadow-sm">
         <div class="container d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img src="aqui va la foto de perfil" alt="Foto de perfil" class="w-25 rounded-circle me-3">
+                <img src=<?= $url ?> alt="Foto de perfil" class="w-25 rounded-circle me-3">
                 <div>
                     <h4 class="m-0">👋 Bienvenido, <?= $name?></h4>
-                    <!-- SI ES ADMIN.... -->
-                        <p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i> Admin ✏️</p>
-                   <!-- SINO.... -->
-                        <p class="text-muted m-0">Lector 📚</p>
-                   
+                    <?= mostrarRol()?>
                 </div>
             </div>
             <a href="" class="btn btn-warning btn-sm">
