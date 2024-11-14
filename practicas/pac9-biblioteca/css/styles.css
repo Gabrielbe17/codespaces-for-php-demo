@@ -103,6 +103,9 @@ section .signin .content .form .inputBox
 	position: relative;
 	width: 100%;
 }
+input{
+	color: white;
+}
 section .signin .content .form .inputBox input 
 {
 	position: relative;
