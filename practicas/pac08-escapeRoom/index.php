@@ -3,9 +3,13 @@
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
-        $_SESSION['nom'] = $_POST['nom'];
+        $_SESSION['nom'] = $_POST['username'];
         $_SESSION['nivel'] = $_POST['nivell'];
         $_SESSION['current_room'] = 1;
+
+        if (isset($_POST['image'])){
+            $_SESSION['image'] = $_POST['image'];
+        }
         
         header('Location: room1.php');
         exit();  
@@ -15,7 +19,7 @@
 
 
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,6 +42,10 @@
                     <option value="mig">Mig</option>
                     <option value="dificil">Difícil</option>
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Foto (url): </label>
+                <input type="url" name="image" id="image" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary w-100">Comença el Joc</button>
         </form>
