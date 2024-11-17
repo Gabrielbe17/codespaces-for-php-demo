@@ -1,7 +1,6 @@
 <?php
     session_start();
     include 'array.php';
-
     
     $numPregunta = $_SESSION['current_room'] -1;
 

@@ -8,7 +8,6 @@
         exit();        
     }
 
-
     $numPregunta = $_SESSION['current_room'] -1;
 
     $mensaje = '';
@@ -18,7 +17,6 @@
         $_SESSION['respuesta'] = $_POST['answer'];
 
         if ($_SESSION['respuesta']  === $adivinanzas[$_SESSION['nivel']][$numPregunta]['resposta'] )  {
-            // $mensaje =  "<div class='alert alert-success mt-3'>¡Felicidades! ¡Has completado el juego!</div>";
             $_SESSION['current_room'] += 1;
             $correcta = 1;
         }else{       

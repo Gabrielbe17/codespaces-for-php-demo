@@ -2,7 +2,6 @@
     session_start();
     include 'array.php';
 
-    
     $numPregunta = $_SESSION['current_room'] -1;
 
     $mensaje = '';
@@ -14,7 +13,7 @@
 
         if ($_SESSION['respuesta']  === $adivinanzas[$_SESSION['nivel']][$numPregunta]['resposta'] )  {
             $mensaje =  "<div class='alert alert-success mt-3'>¡Felicidades! ¡Has completado el juego!</div>";
-            // $_SESSION['current_room'] += 1;
+            $_SESSION['current_room'] = 0;
             $correcta = 1;
             session_destroy();
         }else{       
