@@ -1,45 +1,45 @@
 <?php
-session_start();
+    session_start();
 
-// Datos de usuario predefinidos (esto normalmente se obtendría de una base de datos).
-$usuarios = [
-    ["username" => "admin", "password" => "adminpass", "role" => "admin"],
-    ["username" => "reader", "password" => "readerpass", "role" => "lector"],
-    ["username" => "gabriel", "password" => "gabriel", "role" => "admin"]
-];
+    // Datos de usuario predefinidos (esto normalmente se obtendría de una base de datos).
+    $usuarios = [
+        ["username" => "admin", "password" => "adminpass", "role" => "admin"],
+        ["username" => "reader", "password" => "readerpass", "role" => "lector"],
+        ["username" => "gabriel", "password" => "gabriel", "role" => "admin"]
+    ];
 
-$username = $_POST['username'];
-$pass = $_POST['password'];
-$role = null;
-$error = '';
+    $username = $_POST['username'];
+    $pass = $_POST['password'];
+    $role = null;
+    $error = '';
 
-// Procesamiento del formulario.
-// Validación de credenciales.    
-function validateUser($username, $pass){
-    global $usuarios;
-    global $role;
+    // Procesamiento del formulario.
+    // Validación de credenciales.    
+    function validateUser($username, $pass){
+        global $usuarios;
+        global $role;
 
-    foreach ($usuarios as $usuario) {
-        if ($usuario['username'] === $username && $usuario['password'] === $pass) {
-            $role = $usuario['role'];
-            return true;
+        foreach ($usuarios as $usuario) {
+            if ($usuario['username'] === $username && $usuario['password'] === $pass) {
+                $role = $usuario['role'];
+                return true;
+            }
         }
+        return false;
     }
-    return false;
-}
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (validateUser($username, $pass)) {
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['role'] = $role;
-        $_SESSION['photo'] = $_POST['urlpicture'];
-    
-        header('Location: home.php');
-        exit();
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (validateUser($username, $pass)) {
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['role'] = $role;
+            $_SESSION['photo'] = $_POST['urlpicture'];
+        
+            header('Location: home.php');
+            exit();
+        }
+        // Muestra un error si las credenciales no son válidas.
+        $error = "Usuario o contraseña incorrectos.";
     }
-    // Muestra un error si las credenciales no son válidas.
-    $error = "Usuario o contraseña incorrectos.";
-}
 
 ?>
 
