@@ -1,4 +1,13 @@
-<!-- AQUI VA LA LÓGICA PHP  -->
+<?php
+    session_start();
+    
+    if ($_SESSION['role'] != 'admin') {
+        header('Location: home.php');
+        exit();  
+    }
+
+    
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -46,7 +55,7 @@
                 <label for="descripcion">Descripción</label>
             </div>
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg"></button>
+                <button type="submit" class="btn btn-primary btn-lg">Añadir libro</button>
             </div>
         </form>
     </div>
