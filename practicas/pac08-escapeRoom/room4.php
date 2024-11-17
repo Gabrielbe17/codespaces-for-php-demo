@@ -4,10 +4,10 @@
 
     
     $numPregunta = $_SESSION['current_room'] -1;
-    // var_dump($numPregunta);
 
     $mensaje = '';
     $correcta = 0;
+    $volver = '';
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['respuesta'] = $_POST['answer'];
@@ -22,7 +22,9 @@
         }
     }
 
-
+    if ($correcta) {
+        $volver = "<a class='btn btn-info text-light' href='index.php' role='button'>Volver a jugar</a>";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -44,6 +46,7 @@
             <button type="submit" class="btn btn-success w-100">Enviar</button>
         </form>
         <?= $mensaje; ?> 
+        <?= $volver;?>
     </div>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-// $_SESSION
     $adivinanzas = [
         "facil" => [
             [

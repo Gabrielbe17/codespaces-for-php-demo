@@ -3,7 +3,12 @@
     
     include 'array.php';
 
-    
+    if (!isset($_SESSION['current_room']) && !empty($_SESSION['current_room'])) {
+        header('Location: index.php');
+        exit();        
+    }
+
+
     $numPregunta = $_SESSION['current_room'] -1;
 
     $mensaje = '';

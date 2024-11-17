@@ -3,7 +3,11 @@
     
     include 'array.php';
 
-    
+    if (!isset($_SESSION['current_room']) || empty($_SESSION['current_room'])) {
+        header('Location: index.php');
+        exit();        
+    }
+
     $numPregunta = $_SESSION['current_room'] -1;
 
     $mensaje = '';
@@ -20,12 +24,13 @@
             $mensaje = "<div class='alert alert-danger mt-3'>Respuesta incorrecta. ¡Inténtalo de nuevo!</div>";
         }
     }
+   
 
     if ($correcta) {
         header('Location: room2.php');
         exit();  
     }
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="es">
