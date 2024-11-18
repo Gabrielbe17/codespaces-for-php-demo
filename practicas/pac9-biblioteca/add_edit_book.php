@@ -44,16 +44,14 @@
         $title = $_POST['titulo'];
         $author = $_POST['autor'];
         $image = $_POST['imagen'];
-        $description = $_GET['descripcion'];
-        
-        if (isset($_GET['id'])) {
-            editarLibro($id, $title, $author, $image, $description);
-        }else{
-            agregarLibro($id, $title, $author, $image, $description);
-        }
-        
+        $description = $_GET['descripcion'];    
     }
 
+    if (isset($_GET['id'])) {
+        editarLibro($id, $title, $author, $image, $description);
+    }else{
+        agregarLibro($id, $title, $author, $image, $description);
+    }
 
     
 ?>
