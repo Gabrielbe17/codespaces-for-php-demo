@@ -6,6 +6,57 @@
         exit();  
     }
 
+    if (isset($_GET['id'])) {
+        $posLibro = $_GET['id'] - 1;
+    }
+    function cargarDatosLibro(){
+        global $posLibro;
+        $libro = $_SESSION['libros'][$posLibro];
+
+   
+        return (isset($_GET['id'])) ? "
+            <div class='form-floating mb-3'>
+                <input type='text' class='form-control' id='titulo' name='titulo' value={$libro['title']} placeholder='Título' required>
+                <label for='titulo'>Título</label>
+            </div>
+            <div class='form-floating mb-3'>
+                <input type='text' class='form-control' id='autor' name='autor' value={$libro['author']} placeholder='Autor' required>
+                <label for='autor'>Autor</label>
+            </div>
+            <div class='form-floating mb-3'>
+                <input type='text' class='form-control' id='imagen' name='imagen' value={$libro['image']} placeholder='URL de la Imagen'>
+                <label for='imagen'>URL de la Imagen</label>
+            </div>
+            <div class='form-floating mb-4'>
+                <textarea class='form-control' id='descripcion' name='descripcion' placeholder='Descripción' style='height: 150px;'>{$libro['description']}</textarea>
+                <label for='descripcion'>Descripción</label>
+            </div>
+            <div class='d-grid'>
+                <button type='submit' class='btn btn-primary btn-lg'>Añadir libro</button>
+            </div>" 
+            
+            : 
+            
+            "<div class='form-floating mb-3'>
+                <input type='text' class='form-control' id='titulo' name='titulo' value='' placeholder='Título' required>
+                <label for='titulo'>Título</label>
+            </div>
+            <div class='form-floating mb-3'>
+                <input type='text' class='form-control' id='autor' name='autor' value='' placeholder='Autor' required>
+                <label for='autor'>Autor</label>
+            </div>
+            <div class='form-floating mb-3'>
+                <input type='text' class='form-control' id='imagen' name='imagen' value='' placeholder='URL de la Imagen'>
+                <label for='imagen'>URL de la Imagen</label>
+            </div>
+            <div class='form-floating mb-4'>
+                <textarea class='form-control' id='descripcion' name='descripcion' placeholder='Descripción' style='height: 150px;'></textarea>
+                <label for='descripcion'>Descripción</label>
+            </div>
+            <div class='d-grid'>
+                <button type='submit' class='btn btn-primary btn-lg'>Añadir libro</button>
+            </div>";
+    }
     
 ?>
 <!DOCTYPE html>
@@ -38,25 +89,7 @@
 
         <!-- Formulario para agregar o editar libro. DEPENDIENDO DE SI SE AÑADE O SE EDITA CAMBIARÁN COSA DEL FORMULARIO, USA TERNARIOS SON MUY ÚTILES-->
         <form method="POST" class="mx-auto" style="max-width: 600px;">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="titulo" name="titulo" value="" placeholder="Título" required>
-                <label for="titulo">Título</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="autor" name="autor" value="" placeholder="Autor" required>
-                <label for="autor">Autor</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="imagen" name="imagen" value="" placeholder="URL de la Imagen">
-                <label for="imagen">URL de la Imagen</label>
-            </div>
-            <div class="form-floating mb-4">
-                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" style="height: 150px;"><?= $descripcion ?></textarea>
-                <label for="descripcion">Descripción</label>
-            </div>
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">Añadir libro</button>
-            </div>
+            <?= cargarDatosLibro(); ?>
         </form>
     </div>
 

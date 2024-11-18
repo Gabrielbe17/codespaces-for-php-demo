@@ -8,16 +8,17 @@
     }
 
     $_SESSION['libros'] = [
-        ["id" => 1, "image" => "", "title" => "a", "author" => "as", "description" => "s"],
-        ["id" => 2, "image" => "", "title" => "ab", "author" => "as", "description" => "s"],
-        ["id" => 3, "image" => "", "title" => "ac", "author" => "as", "description" => "s"],
+        ["id" => 1, "image" => "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348322381i/3450744.jpg", "title" => "Nudge", "author" => "Richard H. Thaler", "description" => "Every day we make choices—about what to buy or eat, about financial investments or our children’s health and education, even about the causes we champion or the planet itself. Unfortunately, we often choose poorly. Nudge is about how we make these choices and how we can make better ones. Using dozens of eye-opening examples and drawing on decades of behavioral science research, Nobel Prize winner Richard H. Thaler and Harvard Law School professor Cass R. Sunstein show that no choice is ever presented to us in a neutral way, and that we are all susceptible to biases that can lead us to make bad decisions. But by knowing how people think, we can use sensible “choice architecture” to nudge people toward the best decisions for ourselves, our families, and our society, without restricting our freedom of choice."],
+        ["id" => 2, "image" => "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg", "title" => "1984", "author" => "George Orwell", "description" => "A masterpiece of rebellion and imprisonment where war is peace freedom is slavery and Big Brother is watching. Thought Police, Big Brother, Orwellian - these words have entered our vocabulary because of George Orwell's classic dystopian novel 1984. The story of one man's Nightmare Odyssey as he pursues a forbidden love affair through a world ruled by warring states and a power structure that controls not only information but also individual thought and memory 1984 is a prophetic haunting tale More relevant than ever before 1984 exposes the worst crimes imaginable the destruction of truth freedom and individuality. With a foreword by Thomas Pynchon. This beautiful paperback edition features deckled edges and french flaps a perfect gift for any occasion"],
+        ["id" => 3, "image" => "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1609035271i/41804.jpg", "title" => "I, Robot", "author" => "Isaac Asimov", "description" => "I, Robot, a collection of nine short stories by science-fiction writer Isaac Asimov that imagines the development of “positronic” (humanlike, with a form of artificial intelligence) robots and wrestles with the moral implications of the technology. The stories originally appeared in science-fiction magazines between 1940 and 1950, the year that they were first published together in book form. Asimov’s treatment of robots as being programmed with ethics rather than as marauding metal monsters was greatly influential in the development of science fiction."],
         ["id" => 4, "image" => "", "title" => "ad", "author" => "as", "description" => "s"],
         ["id" => 5, "image" => "", "title" => "ae", "author" => "as", "description" => "s"]
     ];
 
 
     $name = $_SESSION['username'];
-    $url = $_SESSION['photo'];
+    
+    $url = (isset($_SESSION['photo']) && !empty($_SESSION['photo'])) ? $_SESSION['photo'] : "./assets/user.png";
 
     // Verifica el rol del usuario
 
@@ -43,10 +44,10 @@
                     if ($_SESSION['role'] === 'admin'){
                         $listadoLibros .= "
                         <div class='card-footer d-flex justify-content-between'>
-                            <a href='' class='btn btn-outline-primary btn-sm'>
+                            <a href='add_edit_book.php?id={$libro['id']}' class='btn btn-outline-primary btn-sm'>
                                 <i class='fas fa-edit'></i> Editar
                             </a>
-                            <a href='' class='btn btn-outline-danger btn-sm'>
+                            <a href='add_edit_book.php' class='btn btn-outline-danger btn-sm'>
                                 <i class='fas fa-trash-alt'></i> Eliminar
                             </a>
                         </div>";
@@ -73,12 +74,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
     <!-- Encabezado del usuario -->
     <header class="bg-light py-3 mb-4 shadow-sm">
         <div class="container d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img src=<?= $url ?> alt="Foto de perfil" class="w-25 rounded-circle me-3">
+                <img src=<?= $url ?> alt="Foto de perfil" class="rounded-circle me-3 img-fluid" style="width: 6rem; height: 6rem; object-fit: cover;">
                 <div>
                     <h4 class="m-0">👋 Bienvenido, <?= $name?></h4>
                     <?= mostrarRol()?>

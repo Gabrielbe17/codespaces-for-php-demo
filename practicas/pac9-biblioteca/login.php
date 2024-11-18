@@ -73,7 +73,7 @@
                        
                     </div>
                     <div class="inputBox ">
-                        <input class="p-2 m-2" placeholder="Foto de perfil" type="text" name="urlpicture" required>
+                        <input class="p-2 m-2" placeholder="Foto de perfil" type="url" name="urlpicture">
                        
                     </div>
                     <?php if (!empty($error)) : ?>
