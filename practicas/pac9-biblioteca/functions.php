@@ -13,8 +13,8 @@
     function editarLibro($id, $titulo, $autor, $imagen, $descripcion){
         //si pasamos un id, estamos editando un libro
         //acceder a la posicion del array del libro seleccionado, por id, y cambiar sus valores
-        if (isset($_SESSION['libros'][$id])) {
-            $_SESSION['libros'][$id] = ["title" => $titulo, "author" => $autor, "image" => $imagen, "description" => $descripcion];
+        if (isset($_SESSION['libros'][$id - 1])) {
+            $_SESSION['libros'][$id - 1] = ["title" => $titulo, "author" => $autor, "image" => $imagen, "description" => $descripcion];
         }
     }
 

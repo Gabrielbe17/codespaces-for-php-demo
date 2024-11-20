@@ -8,7 +8,11 @@
         exit();  
     }
 
+    $editando = false;
+
     if (isset($_GET['id'])) {
+        $editando = true;
+        $_SESSION['id'] = $_GET['id'];
         $posLibro = $_GET['id'] - 1;
     }
     function cargarDatosLibroInputs(){
@@ -37,21 +41,34 @@
             <div class='d-grid'>
                 <button type='submit' class='btn btn-primary btn-lg'>Añadir libro</button>
             </div>";
+
+            
     }
     
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $id = $_GET['id'];
+    
+    
+    // if (isset($_SESSION['id']) && isset($title) && isset($author) || (isset($image) || isset($description))) {
+        //     editarLibro($_SESSION['id'], $title, $author, $image, $description);
+        // }else{
+            //     agregarLibro(count($_SESSION['libros']) + 1, $title, $author, $image, $description);
+            // }
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
         $title = $_POST['titulo'];
         $author = $_POST['autor'];
         $image = $_POST['imagen'];
-        $description = $_GET['descripcion'];    
+        $description = $_POST['descripcion'];    
+        
+        // var_dump($_SESSION['id']);
+        if ($editando) {
+            echo "holaaaa";
+            editarLibro($_SESSION['id'], $title, $author, $image, $description);
+        }else{
+            agregarLibro(count($_SESSION['libros']) + 1, $title, $author, $image, $description);
+        }
     }
 
-    if (isset($_GET['id'])) {
-        editarLibro($id, $title, $author, $image, $description);
-    }else{
-        agregarLibro($id, $title, $author, $image, $description);
-    }
 
     
 ?>

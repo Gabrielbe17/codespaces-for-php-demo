@@ -78,7 +78,7 @@
                     <?= mostrarRol()?>
                 </div>
             </div>
-            <a href="" class="btn btn-warning btn-sm">
+            <a href="logout.php" class="btn btn-warning btn-sm">
                Cerrar sesión ❌
             </a>
         </div>
