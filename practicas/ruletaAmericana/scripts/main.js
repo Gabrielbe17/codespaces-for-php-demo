@@ -60,13 +60,14 @@ function mostrarPosiblesApuestas(tipoApuesta){
             break;
         case 'Cuadro':
             //18 cuadrados
-            for (let i = 1; i <= 18; i++) {
+            for (let i = 1; i <= 22; i++) {
                 options += `<option> Cuadrado ${i}</option>`;
             }
             break;
         case 'Transversal':
-            options = `<option></option>
-            <option></option>`
+            for (let i = 1; i <= 13; i++) {
+                options += `<option> Fila ${i}</option>`;
+            }
             break;
         case 'Caballo':
             options = `<option></option>

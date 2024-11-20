@@ -103,14 +103,12 @@
                 /*
                     1a seisena: 123, 456
                     ...
-
                     La seisena 1: empieza con el numero  1
                     la seisena 2: empieza con el numero 4
                     la seisena 3: empieza con el numero 7
                     ...
 
                 */ 
-
                 //obtener valor numerico seisena
                 $string = str_split($valorApuesta); //convertir valor apuesta a array
                 $pos = implode('', array_filter($string, 'ctype_digit')); //filtrar array string para que devuelva un array filtrado que muestre solo los digitos, y despues hacerle un implode para convertirlo a string
@@ -125,11 +123,26 @@
                 
                 break;
             case 'Cuadro':
-                //Hay 12 cuadrados
+                //Hay 22 cuadrados
 
                 break;
             case 'Transversal':
-            
+                /*
+                    fila 1 --> 1, 3
+                    fila 2 --> 4, 6
+                    fila 3 --> 7, 9
+                    fila 4 --> 10, 12
+
+                    ...
+                    fila 13 --> 34, 36
+                */
+                $string = str_split($valorApuesta); 
+                $pos = implode('', array_filter($string, 'ctype_digit')); 
+                
+            //    ... array de arrays con las filas
+
+
+                
                 break;
             case 'Caballo':
             
