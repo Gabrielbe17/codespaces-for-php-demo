@@ -38,7 +38,7 @@
                 }
                 break;
             case 'Pleno':
-                echo ($numGanador == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
+                return ($numGanador == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
                 break;
             case 'Docena':
                 if (strcmp($valorApuesta, "1a docena") == 0) {
@@ -93,10 +93,10 @@
 
                 if (strcmp($valorApuesta, "1a y 2a columna") == 0) {
                     //del 1 al 34, con step de 3 , y del 2 al 35 con step de 3
-                    echo (in_array($numGanador, $primeraCol) || in_array($numGanador, $segundaCol)) ? "Has ganado la apuesta!" : "Has perdido!";
+                    return (in_array($numGanador, $primeraCol) || in_array($numGanador, $segundaCol)) ? "Has ganado la apuesta!" : "Has perdido!";
                 }else{
                     // del 2 al 34, con step de 3 , y del 3 al 36 con step de
-                    echo (in_array($numGanador, $segundaCol) || in_array($numGanador, $terceraCol)) ? "Has ganado la apuesta!" : "Has perdido!";
+                    return (in_array($numGanador, $segundaCol) || in_array($numGanador, $terceraCol)) ? "Has ganado la apuesta!" : "Has perdido!";
                 }
                 break;
             case 'Seisena':
@@ -119,7 +119,7 @@
                 $seisenaSeleccionada = range($empieza , $empieza + 5);
                 // print_r($seisenaSeleccionada);
 
-                echo (in_array($numGanador, $seisenaSeleccionada)) ? "Has ganado la apuesta!" : "Has perdido!";
+                return (in_array($numGanador, $seisenaSeleccionada)) ? "Has ganado la apuesta!" : "Has perdido!";
                 
                 break;
             case 'Cuadro':
@@ -168,7 +168,7 @@
 
         $apuesta1x1 = ['Rojo/Negro', 'Par/Impar', 'Pasa/Falta'];
         $apuesta2x1 = ['Docena', 'Columna'];
-        $apuesta05x1 = ['Dos Docenas', 'Columnas'];
+        $apuesta05x1 = ['Dos docenas', 'Dos columnas'];
 
         if (procesarApuesta($tipApuesta) == "Has ganado la apuesta!") {
             if (in_array($tipApuesta, $apuesta1x1)) {
