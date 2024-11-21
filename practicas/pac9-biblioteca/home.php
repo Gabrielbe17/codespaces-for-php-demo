@@ -17,13 +17,11 @@
     // Verifica el rol del usuario
 
     // Obtener la lista de libros desde la sesión
-    function mostrarRol(){
-        return ($_SESSION['role'] == 'admin' ? "<p class='text-muted m-0'><i class='fas fa-user-shield text-success'></i> Admin ✏️</p>" : " <p class='text-muted m-0'>Lector 📚</p>");
-    }
+ 
 
-    function mostrarLibros($libros){
+    function mostrarLibros(){
         $listadoLibros = '';
-        foreach ($libros as $libro) {
+        foreach ($_SESSION['libros'] as $libro) {
             $listadoLibros .=  "
                 <div class='col'>
                     <div class='card h-100 shadow-sm'>
@@ -41,7 +39,7 @@
                             <a href='add_edit_book.php?id={$libro['id']}' class='btn btn-outline-primary btn-sm'>
                                 <i class='fas fa-edit'></i> Editar
                             </a>
-                            <a href='' class='btn btn-outline-danger btn-sm'>
+                            <a href='delete_book.php?id={$libro['id']}' class='btn btn-outline-danger btn-sm'>
                                 <i class='fas fa-trash-alt'></i> Eliminar
                             </a>
                         </div>";
@@ -55,7 +53,7 @@
         return $listadoLibros;
     }
 
-
+    var_dump($_SESSION['libros'])
 ?>
 
 <!DOCTYPE html>
@@ -103,7 +101,7 @@
 
         <!-- Mostrar lista de libros en un grid de tarjetas con tamaño uniforme -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <?= mostrarLibros($_SESSION['libros']) ?>
+            <?= mostrarLibros() ?>
         </div>
     </div>
 

@@ -7,7 +7,7 @@
         header('Location: home.php');
         exit();  
     }
-
+    $name = $_SESSION['username'];
     $editando = false;
 
     if (isset($_GET['id'])) {
@@ -46,13 +46,6 @@
     }
     
     
-    
-    // if (isset($_SESSION['id']) && isset($title) && isset($author) || (isset($image) || isset($description))) {
-        //     editarLibro($_SESSION['id'], $title, $author, $image, $description);
-        // }else{
-            //     agregarLibro(count($_SESSION['libros']) + 1, $title, $author, $image, $description);
-            // }
-    
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $title = $_POST['titulo'];
@@ -62,11 +55,14 @@
         
         // var_dump($_SESSION['id']);
         if ($editando) {
-            echo "holaaaa";
             editarLibro($_SESSION['id'], $title, $author, $image, $description);
+            var_dump($_SESSION['libros']);
         }else{
             agregarLibro(count($_SESSION['libros']) + 1, $title, $author, $image, $description);
+            var_dump($_SESSION['libros']);
         }
+        // header('Location: home.php');
+        // exit();
     }
 
 
@@ -85,8 +81,8 @@
     <header class="bg-light py-3 mb-4 shadow-sm">
         <div class="container d-flex align-items-center justify-content-between">
             <div>
-                <h4 class="m-0">👋 Bienvenido, NOMBRE DE USUARIO</h4>
-                <p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i> ROL ADMIN O ROL LECTOR???</p>
+                <h4 class="m-0">👋 Bienvenido, <?= $name; ?></h4>
+                <p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i> <?= mostrarRol()?></p>
             </div>
             <a href="home.php" class="btn btn-secondary btn-sm">
                 <i class="fas fa-arrow-left"></i> Volver a la Biblioteca

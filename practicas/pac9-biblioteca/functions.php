@@ -1,5 +1,6 @@
 <?php
-    
+    session_start();
+
     $_SESSION['libros'] = [
         ["id" => 1, "image" => "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348322381i/3450744.jpg", "title" => "Nudge", "author" => "Richard H. Thaler", "description" => "Every day we make choices—about what to buy or eat, about financial investments or our children’s health and education, even about the causes we champion or the planet itself. Unfortunately, we often choose poorly. Nudge is about how we make these choices and how we can make better ones. Using dozens of eye-opening examples and drawing on decades of behavioral science research, Nobel Prize winner Richard H. Thaler and Harvard Law School professor Cass R. Sunstein show that no choice is ever presented to us in a neutral way, and that we are all susceptible to biases that can lead us to make bad decisions. But by knowing how people think, we can use sensible “choice architecture” to nudge people toward the best decisions for ourselves, our families, and our society, without restricting our freedom of choice."],
         ["id" => 2, "image" => "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg", "title" => "1984", "author" => "George Orwell", "description" => "A masterpiece of rebellion and imprisonment where war is peace freedom is slavery and Big Brother is watching. Thought Police, Big Brother, Orwellian - these words have entered our vocabulary because of George Orwell's classic dystopian novel 1984. The story of one man's Nightmare Odyssey as he pursues a forbidden love affair through a world ruled by warring states and a power structure that controls not only information but also individual thought and memory 1984 is a prophetic haunting tale More relevant than ever before 1984 exposes the worst crimes imaginable the destruction of truth freedom and individuality. With a foreword by Thomas Pynchon. This beautiful paperback edition features deckled edges and french flaps a perfect gift for any occasion"],
@@ -26,9 +27,15 @@
         }
     }
     function eliminarLibro($id){
-        if (isset($_SESSION['libros'][$id])) {
-            // 
+        if (isset($_SESSION['libros'][$id - 1])) {
+            //eliminar libro del array sesion y array values para reindexar el array
+            unset($_SESSION['libros'][$id - 1]);
+            $_SESSION['libros'] = array_values($_SESSION['libros']);
         }      
+    }
+
+    function mostrarRol(){
+        return ($_SESSION['role'] == 'admin' ? "<p class='text-muted m-0'><i class='fas fa-user-shield text-success'></i> Admin ✏️</p>" : " <p class='text-muted m-0'>Lector 📚</p>");
     }
 
 ?>
