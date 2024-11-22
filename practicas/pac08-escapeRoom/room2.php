@@ -3,8 +3,8 @@
     
     include 'array.php';
 
-    if (!isset($_SESSION['current_room']) && !empty($_SESSION['current_room'])) {
-        header('Location: index.php');
+    if (!isset($_SESSION['current_room']) || $_SESSION['current_room'] != 2) {
+        header('Location: room1.php');
         exit();        
     }
 
@@ -16,7 +16,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['respuesta'] = $_POST['answer'];
 
-        if ($_SESSION['respuesta']  === $adivinanzas[$_SESSION['nivel']][$numPregunta]['resposta'] )  {
+        if (strtolower($_SESSION['respuesta'])  === strtolower($adivinanzas[$_SESSION['nivel']][$numPregunta]['resposta'] ))  {
             $_SESSION['current_room'] += 1;
             $correcta = 1;
         }else{       

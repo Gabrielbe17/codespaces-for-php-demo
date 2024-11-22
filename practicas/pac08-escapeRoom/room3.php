@@ -2,6 +2,12 @@
     session_start();
     include 'array.php';
     
+  
+    if (!isset($_SESSION['current_room']) || $_SESSION['current_room'] != 3) {
+        header('Location: room2.php');
+        exit();        
+    }
+
     $numPregunta = $_SESSION['current_room'] -1;
 
     $mensaje = '';
@@ -10,7 +16,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['respuesta'] = $_POST['answer'];
 
-        if ($_SESSION['respuesta']  === $adivinanzas[$_SESSION['nivel']][$numPregunta]['resposta'] )  {
+        if (strtolower($_SESSION['respuesta'])  === strtolower($adivinanzas[$_SESSION['nivel']][$numPregunta]['resposta'] ))  {
             $_SESSION['current_room'] += 1;
             $correcta = 1;
         }else{       

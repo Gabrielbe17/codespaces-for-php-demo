@@ -10,8 +10,8 @@
                 "resposta" => "El plátano"
             ],
             [
-                "pregunta" => "¿Qué tiene el rey en la panza que no tiene el Papa?",
-                "resposta" => "La letra Y"
+                "pregunta" => "Dos pinzas tengo, hacia atrás camino, de mar o de río en el agua vivo. ",
+                "resposta" => "Cangrejo"
             ],
             [
                 "pregunta" => "Tengo agujas y no sé coser, tengo números y no sé leer. ¿Qué soy?",
