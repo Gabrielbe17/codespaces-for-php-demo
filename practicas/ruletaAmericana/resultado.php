@@ -139,13 +139,13 @@
                 $string = str_split($valorApuesta); 
                 $pos = implode('', array_filter($string, 'ctype_digit')); 
                 
-            //    ... array de arrays con las filas
-
+                //... array de arrays con las filas
 
                 
+
                 break;
             case 'Caballo':
-            
+                
                 break;
             default:
                 break;
