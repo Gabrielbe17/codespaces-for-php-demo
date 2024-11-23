@@ -17,8 +17,11 @@
     }
     function cargarDatosLibroInputs(){
         global $posLibro;
+        global $editando;
+
         $libro = $_SESSION['libros'][$posLibro];
         $id = isset($_GET['id']);
+        $txtBoton = $editando ? "Aplicar Cambios" : "Añadir libro";
         // var_dump($id);
             
         return "
@@ -39,7 +42,7 @@
                 <label for='descripcion'>Descripción</label>
             </div>
             <div class='d-grid'>
-                <button type='submit' class='btn btn-primary btn-lg'>Añadir libro</button>
+                <button type='submit' class='btn btn-primary btn-lg'>{$txtBoton}</button>
             </div>";
 
             

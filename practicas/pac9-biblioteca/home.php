@@ -52,6 +52,9 @@
         }
         return $listadoLibros;
     }
+
+    // var_dump($_SESSION['libros']);
+    // print("<pre>".print_r($_SESSION['libros'],true)."</pre>");
 ?>
 
 <!DOCTYPE html>

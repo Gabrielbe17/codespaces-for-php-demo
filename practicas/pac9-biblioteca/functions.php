@@ -15,7 +15,7 @@
         //si pasamos un id, estamos editando un libro
         //acceder a la posicion del array del libro seleccionado, por id, y cambiar sus valores
         if (isset($_SESSION['libros'][$id - 1])) {
-            $_SESSION['libros'][$id - 1] = ["title" => $titulo, "author" => $autor, "image" => $imagen, "description" => $descripcion];
+            $_SESSION['libros'][$id - 1] = ["id" => $id, "title" => $titulo, "author" => $autor, "image" => $imagen, "description" => $descripcion];
         }
     }
 
@@ -30,7 +30,7 @@
         if (isset($_SESSION['libros'][$id - 1])) {
             //eliminar libro del array sesion y array values para reindexar el array
             unset($_SESSION['libros'][$id - 1]);
-            $_SESSION['libros'] = array_values($_SESSION['libros']);
+            // $_SESSION['libros'] = array_values($_SESSION['libros']);
         }      
     }
 
