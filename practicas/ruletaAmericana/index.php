@@ -1,3 +1,38 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['historialJugadas'])) {
+        $_SESSION['historialJugadas'] = [];
+    }
+
+    if (isset($_GET['tipoApuesta']) && isset($_GET['valorApuesta']) && isset($_GET['cantidad'])) {
+        $tipoApuesta = $_GET['tipoApuesta'];
+        $valorApuesta = $_GET['valorApuesta'];
+        $cantidadApuesta = $_GET['cantidad'];    
+        
+        $jugada = ["id" => count($_SESSION['historialJugadas'])+1,"tipoApuesta" => $tipoApuesta, "valorApuesta" => $valorApuesta, "cantidadApuesta" => $cantidadApuesta];
+
+        array_push($_SESSION['historialJugadas'], $jugada);
+        // $_SESSION['historialJugadas'] .= $jugada;
+    }
+
+    function mostrarHistorial(){
+
+        $lista = "";
+        foreach ($_SESSION['historialJugadas'] as &$jugada) {
+            $lista .= "
+                <tr>
+                    <td>{$jugada['id']}</td>
+                    <td>{$jugada['tipoApuesta']}</td>
+                    <td>{$jugada['valorApuesta']}</td>
+                    <td>{$jugada['cantidadApuesta']}€</td>
+                </tr>
+            ";
+        }
+        return $lista;
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -172,6 +207,23 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
         
+    </div>
+    <div class="position-absolute top-0 left-0 border p-3" style="height: 40rem; width: auto">
+        <!-- mostrar historial de jugadas -->
+        <h4 class="text-center p-3">Historial de Jugadas</h4>    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tipo Apuesta</th>
+                    <th scope="col">Valor Apuesta</th>
+                    <th scope="col">Cantidad Apostada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?= mostrarHistorial();?>
+            </tbody>
+        </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="scripts/main.js"></script>

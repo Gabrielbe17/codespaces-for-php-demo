@@ -113,8 +113,8 @@
                 $string = str_split($valorApuesta); //convertir valor apuesta a array
                 $pos = implode('', array_filter($string, 'ctype_digit')); //filtrar array string para que devuelva un array filtrado que muestre solo los digitos, y despues hacerle un implode para convertirlo a string
                 
-                $arrEmpieza = range(1,31, 3); //array que contiene las posiciones iniciales de cada seisena
-                $empieza = $arrEmpieza[$pos-1];
+                $arrayPosiciones = range(1,31, 3); //array que contiene las posiciones iniciales de cada seisena
+                $empieza = $arrayPosiciones[$pos-1];
 
                 $seisenaSeleccionada = range($empieza , $empieza + 5);
                 // print_r($seisenaSeleccionada);
@@ -132,18 +132,18 @@
                     fila 2 --> 4, 6
                     fila 3 --> 7, 9
                     fila 4 --> 10, 12
-
                     ...
                     fila 13 --> 34, 36
                 */
                 $string = str_split($valorApuesta); 
                 $pos = implode('', array_filter($string, 'ctype_digit')); 
                 
-                //... array de arrays con las filas
+                $arrayNumInicial = range(1, 34, 3);
+                $arrayFila = $arrayNumInicial[$pos-1];
 
-                
+                return in_array($numGanador, range($arrayFila, $arrayFila +2)) ? "Has ganado la apuesta!" : "Has perdido!";
 
-                break;
+                break;  
             case 'Caballo':
                 
                 break;
@@ -170,6 +170,8 @@
         $apuesta2x1 = ['Docena', 'Columna'];
         $apuesta05x1 = ['Dos docenas', 'Dos columnas'];
 
+        // var_dump()
+
         if (procesarApuesta($tipApuesta) == "Has ganado la apuesta!") {
             if (in_array($tipApuesta, $apuesta1x1)) {
                 return 'Has recuperado la apuesta: ' . $cantidadApuesta . '€!';
@@ -185,7 +187,8 @@
             }else if ($tipApuesta == 'Cuadro') {
                 return '';
             }else if ($tipApuesta == 'Transversal') {
-                return '';
+                $ganancia = $cantidadApuesta * 11;
+                return 'Has ganado: '. $ganancia . '€!';
             }else if ($tipApuesta == 'Caballo') {
                 return '';
             }else {
@@ -194,6 +197,9 @@
             }
         }
     }
+
+    // $haGanado = 
+    $urlParametros = "tipoApuesta={$tipoApuesta}&valorApuesta={$valorApuesta}&cantidad={$cantidadApuesta}";
 ?>
 
 <!DOCTYPE html>
@@ -244,6 +250,7 @@
             <p>El numero ganador es... <?php echo $numGanador;?> !!</p>
             <h3> <?php echo procesarApuesta($tipoApuesta)?></h3>
             <h4><?= calcularGanancias($tipoApuesta)?></h4>
+            <a class="btn btn-success mt-3 w-auto mx-auto px-4" href="index.php?<?= $urlParametros?>" role="button">Volver a apostar</a>
         </div>
     </div>
 </body>
