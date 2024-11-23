@@ -21,7 +21,7 @@
 
     function mostrarLibros(){
         $listadoLibros = '';
-        foreach ($_SESSION['libros'] as $libro) {
+        foreach ($_SESSION['libros'] as &$libro) {
             $listadoLibros .=  "
                 <div class='col'>
                     <div class='card h-100 shadow-sm'>
@@ -52,8 +52,6 @@
         }
         return $listadoLibros;
     }
-
-    var_dump($_SESSION['libros'])
 ?>
 
 <!DOCTYPE html>

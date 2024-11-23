@@ -35,7 +35,7 @@
                 <label for='imagen'>URL de la Imagen</label>
             </div>
             <div class='form-floating mb-4'>
-                <textarea class='form-control' id='descripcion' name='descripcion' placeholder='Descripción' style='height: 150px;'>" . ($id ? $libro['image'] : '') . "</textarea>
+                <textarea class='form-control' id='descripcion' name='descripcion' placeholder='Descripción' style='height: 150px;'>" . ($id ? $libro['description'] : '') . "</textarea>
                 <label for='descripcion'>Descripción</label>
             </div>
             <div class='d-grid'>
@@ -56,13 +56,11 @@
         // var_dump($_SESSION['id']);
         if ($editando) {
             editarLibro($_SESSION['id'], $title, $author, $image, $description);
-            var_dump($_SESSION['libros']);
         }else{
             agregarLibro(count($_SESSION['libros']) + 1, $title, $author, $image, $description);
-            var_dump($_SESSION['libros']);
         }
-        // header('Location: home.php');
-        // exit();
+        header('Location: home.php');
+        exit();
     }
 
 

@@ -14,7 +14,6 @@
         eliminarLibro($id);
         header('Location: home.php');
         exit();
-        // var_dump($_SESSION['libros']);
     }
 
 ?>
