@@ -13,7 +13,6 @@
         $jugada = ["id" => count($_SESSION['historialJugadas'])+1,"tipoApuesta" => $tipoApuesta, "valorApuesta" => $valorApuesta, "cantidadApuesta" => $cantidadApuesta];
 
         array_push($_SESSION['historialJugadas'], $jugada);
-        // $_SESSION['historialJugadas'] .= $jugada;
     }
 
     function mostrarHistorial(){

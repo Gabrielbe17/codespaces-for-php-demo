@@ -3,6 +3,21 @@ console.log('running');
 const selectApuesta = document.querySelector('select#selectTipoApuesta');
 const selectPosiblesApuestas = document.querySelector('select#selectPosiblesApuestas');
 
+const apuestasCaballoHorizontales = [
+    '1/2', '2/3', '4/5', '5/6', '7/8', '8/9', '10/11', '11/12', 
+    '13/14', '14/15', '16/17', '17/18', '19/20', '20/21', '22/23', '23/24', 
+    '25/26', '26/27', '28/29', '29/30', '31/32', '32/33', '34/35', '35/36'
+];
+  
+const apuestasCaballoVerticales = [
+    '1/4', '2/5', '3/6', '4/7', '5/8', '6/9', '7/10', '8/11', '9/12', 
+    '10/13', '11/14', '12/15', '13/16', '14/17', '15/18', '16/19', '17/20', 
+    '18/21', '19/22', '20/23', '21/24', '22/25', '23/26', '24/27', '25/28', 
+    '26/29', '27/30', '28/31', '29/32', '30/33', '31/34', '32/35', '33/36'
+];
+  
+
+
 selectApuesta.addEventListener('change', (e) =>{
     // alert(`Has seleccionado ${e.target.value}`);
     //TODO: FUNCION QUE, DEPENDE DEL TIPO DE APUESTA, MUESTRE LAS POSIBLES APUESTAS EN FORMA DE OPTIONS Y LAS INTRODUZCA DENTRO DEL SELECT
@@ -70,8 +85,19 @@ function mostrarPosiblesApuestas(tipoApuesta){
             }
             break;
         case 'Caballo':
-            options = `<option></option>
-            <option></option>`
+            options += `
+            <optgroup label="Horizontales">
+               ${
+                apuestasCaballoHorizontales.map((apuesta) => `<option>${apuesta}</option>`)
+               } 
+            </optgroup>
+            <optgroup label="Verticales">
+                ${
+                    apuestasCaballoVerticales.map((apuesta) => `<option>${apuesta}</option>`)
+                } 
+            </optgroup>
+            `;
+            // mostrar select con posibles valores verticales y horizontales
             break;
         default:
             break;

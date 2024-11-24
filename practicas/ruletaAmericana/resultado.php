@@ -125,6 +125,23 @@
             case 'Cuadro':
                 //Hay 22 cuadrados
 
+                // los cuadrados empiezan por 1, 2, 4, 5, 7, 8, 10, 11 ... skipea los multiplos de 3
+
+                //convertir valorApuesta a numero
+                $string = str_split($valorApuesta); 
+                $pos = implode('', array_filter($string, 'ctype_digit')); 
+
+                // reindexar el array filtrado, para corregir posiciones
+                $arrayFiltrado = array_values(array_filter(range(1, 32), function($n){
+                    return $n % 3 != 0;
+                }));
+
+                //acceder a la posicion del array filtrado dependiendo, con $pos, y comprobar si esta el rango 
+                $numInicial = $arrayFiltrado[$pos-1];
+                $rangoValores = [$numInicial, $numInicial+1, $numInicial+3, $numInicial+4];
+
+                return in_array($numGanador, $rangoValores) ? "Has ganado la apuesta!" : "Has perdido";
+                
                 break;
             case 'Transversal':
                 /*
@@ -145,7 +162,11 @@
 
                 break;  
             case 'Caballo':
-                
+                // convertir valor apuesta a un numero y, dependiendo de si es vertical o horizontal, sumar 1 o 3 a ese numero y ver si el numero ganador esta en ese rango
+                $posiblesNumeros = explode('/', $valorApuesta);
+
+                return in_array($numGanador, $posiblesNumeros) ? "Has ganado la apuesta!" : "Has perdido!";
+
                 break;
             default:
                 break;
@@ -185,12 +206,14 @@
                 $ganancia = $cantidadApuesta * 5;
                 return 'Has ganado la mitad: ' . $ganancia . '€!';
             }else if ($tipApuesta == 'Cuadro') {
-                return '';
+                $ganancia = $cantidadApuesta * 8;
+                return 'Has ganado: ' . $ganancia . '€!';
             }else if ($tipApuesta == 'Transversal') {
                 $ganancia = $cantidadApuesta * 11;
                 return 'Has ganado: '. $ganancia . '€!';
             }else if ($tipApuesta == 'Caballo') {
-                return '';
+                $ganancia = $cantidadApuesta * 17;
+                return 'Has ganado: '. $ganancia . '€!';
             }else {
                 $ganancia = $cantidadApuesta * 35;
                 return 'Has ganado: ' . $ganancia . '€!';
