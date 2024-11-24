@@ -5,28 +5,33 @@
         $_SESSION['historialJugadas'] = [];
     }
 
-    if (isset($_GET['tipoApuesta']) && isset($_GET['valorApuesta']) && isset($_GET['cantidad'])) {
-        $tipoApuesta = $_GET['tipoApuesta'];
-        $valorApuesta = $_GET['valorApuesta'];
-        $cantidadApuesta = $_GET['cantidad'];    
-        
-        $jugada = ["id" => count($_SESSION['historialJugadas'])+1,"tipoApuesta" => $tipoApuesta, "valorApuesta" => $valorApuesta, "cantidadApuesta" => $cantidadApuesta];
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $_SESSION['tipoApuesta'] = $_POST['tipoApuesta']; 
+        $_SESSION['valorApuesta'] = $_POST['valorApuesta']; 
+        $_SESSION['cantidadApuesta'] = $_POST['cantidad'];     
 
-        array_push($_SESSION['historialJugadas'], $jugada);
+        $_SESSION['jugada'] = ["id" => count($_SESSION['historialJugadas'])+1,"tipoApuesta" => $_SESSION['tipoApuesta'], "valorApuesta" => $_SESSION['valorApuesta'], "cantidadApuesta" => $_SESSION['cantidadApuesta']];
+        array_push($_SESSION['historialJugadas'], $_SESSION['jugada']);
     }
 
-    function mostrarHistorial(){
 
-        $lista = "";
-        foreach ($_SESSION['historialJugadas'] as &$jugada) {
-            $lista .= "
-                <tr>
-                    <td>{$jugada['id']}</td>
-                    <td>{$jugada['tipoApuesta']}</td>
-                    <td>{$jugada['valorApuesta']}</td>
-                    <td>{$jugada['cantidadApuesta']}€</td>
-                </tr>
-            ";
+    function mostrarHistorial(){
+ 
+        if (count($_SESSION['historialJugadas']) == 0) {
+            $lista = "<tr><td colspan='4'>No hay jugadas registradas.</td></tr>";
+        }else{
+            $lista = "";
+            foreach ($_SESSION['historialJugadas'] as &$jugada) {
+                $lista .= "
+                    <tr>
+                        <td>{$jugada['id']}</td>
+                        <td>{$jugada['tipoApuesta']}</td>
+                        <td>{$jugada['valorApuesta']}</td>
+                        <td>{$jugada['cantidadApuesta']}€</td>
+                    </tr>
+                ";
+            }
+
         }
         return $lista;
     }
@@ -49,7 +54,6 @@
             margin-bottom: 1rem;
         }
         .form-group, input{
-            /* background-color: red !important; */
             width: 100% !important;
         }
         button[type="submit"]{
@@ -169,7 +173,7 @@
 
         <!-- Formulario Apuesta -->
         <h2 class="text-center mb-4">Formulario de Apuestas</h2>
-        <form action="resultado.php" method="get" class="border p-3 bg-body">
+        <form action="resultado.php" method="POST" class="border p-3 bg-body">
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Tipo apuesta</label>
                 <select class="form-control" id="selectTipoApuesta" name="tipoApuesta" required>
@@ -207,7 +211,7 @@
         </form>
         
     </div>
-    <div class="position-absolute top-0 left-0 border p-3" style="height: 40rem; width: auto">
+    <div class="position-absolute top-0 left-0  p-3" style="height: 40rem; width: auto">
         <!-- mostrar historial de jugadas -->
         <h4 class="text-center p-3">Historial de Jugadas</h4>    
         <table class="table">
@@ -222,6 +226,13 @@
             <tbody>
                 <?= mostrarHistorial();?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">
+                        <a class="btn btn-secondary" href="delete_history.php" role="button">Limpiar Historial</a>
+                    </th>
+                </tr>
+            </tfoot>
         </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

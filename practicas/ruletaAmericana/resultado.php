@@ -1,9 +1,9 @@
 <?php
 
     //variables
-    $tipoApuesta = $_GET['tipoApuesta'];
-    $valorApuesta = $_GET['valorApuesta'];
-    $cantidadApuesta = $_GET['cantidad']; 
+    $tipoApuesta = $_POST['tipoApuesta'];
+    $valorApuesta = $_POST['valorApuesta'];
+    $cantidadApuesta = $_POST['cantidad']; 
         
     // función que retorne el numero ganador de la apuesta, y determine si es negro o rojo, menos el 0 (que es verde) 
     function generarNumeroGanador(){
@@ -175,10 +175,12 @@
     function comprobarColorNumero($num){
         $color = '';
 
-        if (($num > 0 && $num <= 10) || ($num >= 19 && $num <= 29)){
-            $color = ($num % 2 == 0) ? "Negro" : "Rojo";
-        }else{
-            $color = ($num % 2 == 0) ? "Rojo" : "Negro";
+        if ($num != 0) {
+            if (($num > 0 && $num <= 10) || ($num >= 19 && $num <= 28)){
+                $color = ($num % 2 == 0) ? "Negro" : "Rojo";
+            }else{
+                $color = ($num % 2 == 0) ? "Rojo" : "Negro";
+            }
         }
         return $color;
     }
@@ -190,8 +192,6 @@
         $apuesta1x1 = ['Rojo/Negro', 'Par/Impar', 'Pasa/Falta'];
         $apuesta2x1 = ['Docena', 'Columna'];
         $apuesta05x1 = ['Dos docenas', 'Dos columnas'];
-
-        // var_dump()
 
         if (procesarApuesta($tipApuesta) == "Has ganado la apuesta!") {
             if (in_array($tipApuesta, $apuesta1x1)) {
@@ -220,9 +220,7 @@
             }
         }
     }
-
-    // $haGanado = 
-    $urlParametros = "tipoApuesta={$tipoApuesta}&valorApuesta={$valorApuesta}&cantidad={$cantidadApuesta}";
+    $esRojo = comprobarColorNumero($numGanador) === "Rojo" ? "text-danger" : "";
 ?>
 
 <!DOCTYPE html>
@@ -266,14 +264,20 @@
                 <img src="assets/apuestas-ruleta.jpg" alt="" style="width: 30rem;">
             </div>
         </div>
-        <div class="row">
-            <p>El jugador ha elegido el tipo de apuesta: <?php echo $tipoApuesta?></p>
-            <p>El jugador ha apostado a: <?php echo $valorApuesta?></p>
+        <div class="row mt-5">
+            <p>El jugador ha elegido el tipo de apuesta: <?= $tipoApuesta?></p>
+            <p>El jugador ha apostado a: <?= $valorApuesta?></p>
             <p>El jugador ha apostado: <?= $cantidadApuesta . '€!'?></p>
-            <p>El numero ganador es... <?php echo $numGanador;?> !!</p>
+            <p>El numero ganador es... <span class="display-6 <?= $esRojo ?>"><?= $numGanador; ?></span>!</p>
+
             <h3> <?php echo procesarApuesta($tipoApuesta)?></h3>
             <h4><?= calcularGanancias($tipoApuesta)?></h4>
-            <a class="btn btn-success mt-3 w-auto mx-auto px-4" href="index.php?<?= $urlParametros?>" role="button">Volver a apostar</a>
+            <form action="index.php" method="POST">
+                <input type="hidden" name="tipoApuesta" value="<?= $tipoApuesta; ?>">
+                <input type="hidden" name="valorApuesta" value="<?= $valorApuesta; ?>">
+                <input type="hidden" name="cantidad" value="<?= $cantidadApuesta; ?>">
+                <button type="submit" class="btn btn-success mt-3 w-auto mx-auto px-4">Volver a apostar</button>
+            </form>
         </div>
     </div>
 </body>
