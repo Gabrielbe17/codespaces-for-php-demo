@@ -17,6 +17,10 @@
         $_SESSION['basuraPosiciones'] = [];
         crearColaBasura();
         $_SESSION['count'] = 0;
+        $_SESSION['contadorGlass'] = 0;
+        $_SESSION['contadorOrganic'] = 0;
+        $_SESSION['contadorPaper'] = 0;
+        $_SESSION['contadorPlastic'] = 0;
     }
 
     //ARRAY DE 28 POSICIONES
@@ -131,19 +135,19 @@
             <tbody>
                 <tr>
                     <td>Paper</td>
-                    <td><span><?= $contadorPaper?></span> / 7</td>
+                    <td><span><?= $_SESSION['contadorPaper']?></span> / 7</td>
                 </tr>
                 <tr>
                     <td>Glass</td>
-                    <td><span><?= $contadorGlass?></span>/ 7</td>
+                    <td><span><?= $_SESSION['contadorGlass']?></span>/ 7</td>
                 </tr>
                 <tr>
                     <td>Organic</td>
-                    <td><span><?= $contadorOrganic?></span> / 7</td>
+                    <td><span><?= $_SESSION['contadorOrganic']?></span> / 7</td>
                 </tr>
                 <tr>
                     <td>Plastic</td>
-                    <td><span><?= $contadorPlastic?></span> / 7</td>
+                    <td><span><?= $_SESSION['contadorPlastic']?></span> / 7</td>
                 </tr>
             </tbody>
         </table>

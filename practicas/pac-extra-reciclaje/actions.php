@@ -11,11 +11,7 @@
 
 
     $basuraActual = $_SESSION['basura'][$pos]['name'];
-    $contadorGlass = 0;
-    $contadorOrganic = 0;
-    $contadorPaper = 0;
-    $contadorPlastic = 0;
-
+    
 
     if (isset($_REQUEST['accion'])) {
         $basuraSeleccionada = $_REQUEST['accion'];
