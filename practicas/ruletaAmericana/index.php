@@ -213,6 +213,7 @@
     </div>
     <div class="position-absolute top-0 left-0  p-3" style="height: 40rem; width: auto">
         <!-- mostrar historial de jugadas -->
+         <!-- //ver el saldo total de la ruleta en todo momento  -->
         <h4 class="text-center p-3">Historial de Jugadas</h4>    
         <table class="table">
             <thead>

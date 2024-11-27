@@ -1,8 +1,69 @@
 <?php
     session_start();
 
+    include "actions.php";
 
-    //plastic, paper, organic, glass, 
+    //mostrar residuo actual y la cola restante
+    $_SESSION['basura'] = [
+        ["url" => "./images/glass.jpg", "name" => "Glass"],
+        ["url" => "./images/organic.jpg", "name" => "Organic"],
+        ["url" => "./images/paper.jpg", "name" => "Paper"],
+        ["url" => "./images/plastic.jpg", "name" => "Plastic"]
+    ];
+    
+    //empezar con contador = 0, si jugador acierta, incrementar
+    
+    if (!isset($_SESSION['basuraPosiciones']) || empty($_SESSION['basuraPosiciones'])) {
+        $_SESSION['basuraPosiciones'] = [];
+        crearColaBasura();
+        $_SESSION['count'] = 0;
+    }
+
+    //ARRAY DE 28 POSICIONES
+    
+    function crearColaBasura(){
+        for ($i=0; $i < 28; $i++) { 
+            $posRandom = rand(0, count($_SESSION['basura']) -1);
+            array_push($_SESSION['basuraPosiciones'], $posRandom);
+        }
+    }
+    
+
+    // print("<pre>".print_r($_SESSION['basuraPosiciones'],true)."</pre>");
+
+
+    function mostrarColaBasura() {
+        global $pos, $pos1, $pos2, $pos3;
+        return "
+        <div class='d-flex align-items-center justify-content-center mb-4'>
+            <div class='text-center p-3 mx-2 border border-success rounded' style='background-color: #d4edda;'>
+                <h4 class='text-success'>Ahora: {$_SESSION['basura'][$pos]['name']}</h4>
+                <img src={$_SESSION['basura'][$pos]['url']} alt='' class='img-fluid' style='width: 80px;''>
+            </div>
+            <div class='d-flex gap-2'>
+                <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
+                    <h6>{$_SESSION['basura'][$pos1]['name']}</h6>
+                    <img src={$_SESSION['basura'][$pos1]['url']} alt='' class='img-fluid' style='width: 50px;'>
+                </div>
+            </div>
+            <div class='d-flex gap-2'>
+                <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
+                    <h6>{$_SESSION['basura'][$pos2]['name']}</h6>
+                    <img src={$_SESSION['basura'][$pos2]['url']} alt='' class='img-fluid' style='width: 50px;'>
+                </div>
+            </div>
+            <div class='d-flex gap-2'>
+                <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
+                    <h6>{$_SESSION['basura'][$pos3]['name']}</h6>
+                    <img src={$_SESSION['basura'][$pos3]['url']} alt='' class='img-fluid' style='width: 50px;'>
+                </div>
+            </div>
+        </div>
+        ";
+
+    }    
+
+   
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +85,7 @@
         <!-- Contador de basura procesada -->
        
         <button type="button" class="btn p-3 btn-secondary text-white">
-            Basura procesada: <span class="badge bg-danger"> NUMERO DE BASURA PROCESADA</span>
+            Basura procesada: <span class="badge bg-danger"> <?= $basuraProcesada?></span>
         </button>
         <hr>
 
@@ -32,37 +93,16 @@
         <div class="mt-4">
             <h3>¿Qué toca reciclar ahora?</h3>
             <div class="d-flex align-items-center justify-content-center mb-4">
-                <!-- Basura actual -->
-                <div class="text-center p-3 mx-2 border border-success rounded" style="background-color: #d4edda;">
-                    <h4 class="text-success">Ahora: ????</h4>
-                    <img src="imagenbasuraquetoca.jpg" alt="" class="img-fluid" style="width: 80px;">
-                </div>
-                <!-- Cola de basura -->
-                <div class="d-flex gap-2">
-                    <div class="text-center p-3 mx-2 border rounded" style="background-color: #f8f9fa;">
-                        <h6>fasdfasf</h6>
-                        <img src=".jpg" alt="" class="img-fluid" style="width: 50px;">
-                    </div>
-                </div>
-                <div class="d-flex gap-2">
-                    <div class="text-center p-3 mx-2 border rounded" style="background-color: #f8f9fa;">
-                        <h6>fasdfasf</h6>
-                        <img src=".jpg" alt="" class="img-fluid" style="width: 50px;">
-                    </div>
-                </div>
-                <div class="d-flex gap-2">
-                    <div class="text-center p-3 mx-2 border rounded" style="background-color: #f8f9fa;">
-                        <h6>fasdfasf</h6>
-                        <img src=".jpg" alt="" class="img-fluid" style="width: 50px;">
-                    </div>
-                </div>
+                <?=
+                    mostrarColaBasura();
+                ?>
             </div>
         </div>
 
         <!-- Botones de contenedores -->
         <div class="d-flex justify-content-center flex-wrap gap-3">
             <a href="index.php?accion=Glass" class="btn btn-success">
-                    Glass
+                Glass
             </a>
             <a href="index.php?accion=Organic" class="btn btn-secondary">
                 Organic
@@ -81,7 +121,7 @@
 
         <!-- Estado de los contenedores -->
         <h2 class="mt-5">Estado de los Contenedores</h2>
-        <table class="table table-striped">
+        <table class="table table-striped p-5">
             <thead>
                 <tr>
                     <th>Tipo</th>
@@ -90,8 +130,20 @@
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td>X / 7</td>
+                    <td>Paper</td>
+                    <td><span><?= $contadorPaper?></span> / 7</td>
+                </tr>
+                <tr>
+                    <td>Glass</td>
+                    <td><span><?= $contadorGlass?></span>/ 7</td>
+                </tr>
+                <tr>
+                    <td>Organic</td>
+                    <td><span><?= $contadorOrganic?></span> / 7</td>
+                </tr>
+                <tr>
+                    <td>Plastic</td>
+                    <td><span><?= $contadorPlastic?></span> / 7</td>
                 </tr>
             </tbody>
         </table>
