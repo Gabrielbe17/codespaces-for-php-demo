@@ -11,7 +11,6 @@
         ["url" => "./images/plastic.jpg", "name" => "Plastic"]
     ];
     
-    //empezar con contador = 0, si jugador acierta, incrementar
     
     if (!isset($_SESSION['basuraPosiciones']) || empty($_SESSION['basuraPosiciones'])) {
         $_SESSION['basuraPosiciones'] = [];
@@ -21,6 +20,10 @@
         $_SESSION['contadorOrganic'] = 0;
         $_SESSION['contadorPaper'] = 0;
         $_SESSION['contadorPlastic'] = 0;
+        $_SESSION['pos0'] = $_SESSION['basuraPosiciones'][0]; 
+        $_SESSION['pos1'] = $_SESSION['basuraPosiciones'][1]; 
+        $_SESSION['pos2'] = $_SESSION['basuraPosiciones'][2]; 
+        $_SESSION['pos3'] = $_SESSION['basuraPosiciones'][3]; 
     }
 
     //ARRAY DE 28 POSICIONES
@@ -31,38 +34,33 @@
             array_push($_SESSION['basuraPosiciones'], $posRandom);
         }
     }
-    
-
-    // print("<pre>".print_r($_SESSION['basuraPosiciones'],true)."</pre>");
-
 
     function mostrarColaBasura() {
-        global $pos, $pos1, $pos2, $pos3;
         return "
-        <div class='d-flex align-items-center justify-content-center mb-4'>
-            <div class='text-center p-3 mx-2 border border-success rounded' style='background-color: #d4edda;'>
-                <h4 class='text-success'>Ahora: {$_SESSION['basura'][$pos]['name']}</h4>
-                <img src={$_SESSION['basura'][$pos]['url']} alt='' class='img-fluid' style='width: 80px;''>
-            </div>
-            <div class='d-flex gap-2'>
-                <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
-                    <h6>{$_SESSION['basura'][$pos1]['name']}</h6>
-                    <img src={$_SESSION['basura'][$pos1]['url']} alt='' class='img-fluid' style='width: 50px;'>
+            <div class='d-flex align-items-center justify-content-center mb-4'>
+                <div class='text-center p-3 mx-2 border border-success rounded' style='background-color: #d4edda;'>
+                    <h4 class='text-success'>Ahora: {$_SESSION['basura'][$_SESSION['pos0']]['name']}</h4>
+                    <img src={$_SESSION['basura'][$_SESSION['pos0']]['url']} alt='' class='img-fluid' style='width: 80px;''>
+                </div>
+                <div class='d-flex gap-2'>
+                    <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
+                        <h6>{$_SESSION['basura'][$_SESSION['pos1']]['name']}</h6>
+                        <img src={$_SESSION['basura'][$_SESSION['pos1']]['url']} alt='' class='img-fluid' style='width: 50px;'>
+                    </div>
+                </div>
+                <div class='d-flex gap-2'>
+                    <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
+                        <h6>{$_SESSION['basura'][$_SESSION['pos2']]['name']}</h6>
+                        <img src={$_SESSION['basura'][$_SESSION['pos2']]['url']} alt='' class='img-fluid' style='width: 50px;'>
+                    </div>
+                </div>
+                <div class='d-flex gap-2'>
+                    <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
+                        <h6>{$_SESSION['basura'][$_SESSION['pos3']]['name']}</h6>
+                        <img src={$_SESSION['basura'][$_SESSION['pos3']]['url']} alt='' class='img-fluid' style='width: 50px;'>
+                    </div>
                 </div>
             </div>
-            <div class='d-flex gap-2'>
-                <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
-                    <h6>{$_SESSION['basura'][$pos2]['name']}</h6>
-                    <img src={$_SESSION['basura'][$pos2]['url']} alt='' class='img-fluid' style='width: 50px;'>
-                </div>
-            </div>
-            <div class='d-flex gap-2'>
-                <div class='text-center p-3 mx-2 border rounded' style='background-color: #f8f9fa;'>
-                    <h6>{$_SESSION['basura'][$pos3]['name']}</h6>
-                    <img src={$_SESSION['basura'][$pos3]['url']} alt='' class='img-fluid' style='width: 50px;'>
-                </div>
-            </div>
-        </div>
         ";
 
     }    
@@ -85,7 +83,7 @@
 
 
         <!-- Mensaje de contenedores llenos -->
-       
+        <?= $alertContainer ?>
         <!-- Contador de basura procesada -->
        
         <button type="button" class="btn p-3 btn-secondary text-white">
