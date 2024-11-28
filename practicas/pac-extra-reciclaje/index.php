@@ -89,7 +89,7 @@
         <!-- Contador de basura procesada -->
        
         <button type="button" class="btn p-3 btn-secondary text-white">
-            Basura procesada: <span class="badge bg-danger"> <?= $basuraProcesada?></span>
+            Basura procesada: <span class="badge bg-danger"> <?= $_SESSION['count']?></span>
         </button>
         <hr>
 
@@ -153,7 +153,7 @@
         </table>
     </div>
 
-    <?php include 'components/footer.php'; ?>
+    <!-- <?php include 'components/footer.php'; ?> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

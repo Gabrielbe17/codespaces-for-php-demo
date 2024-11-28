@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $basuraProcesada = $_SESSION['count'];
+    // $basuraProcesada = $_SESSION['count'];
         
 
     $pos = $_SESSION['basuraPosiciones'][$_SESSION['count']];
@@ -12,33 +12,40 @@
 
     $basuraActual = $_SESSION['basura'][$pos]['name'];
     
+    print("<pre>".print_r($_SESSION['basuraPosiciones'],true)."</pre>");
 
-    if (isset($_REQUEST['accion'])) {
-        $basuraSeleccionada = $_REQUEST['accion'];
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         
-        if ($basuraSeleccionada == array_shift($_SESSION['basuraPosiciones'])) {
-            switch ($basuraSeleccionada) {
-                case 'Glass':
-                    $contadorGlass+=1;
-                    break;
-                case 'Organic':
-                    $contadorOrganic+=1;
-                    break;
-                case 'Paper':
-                    $contadorPaper++;
-                    break;
-                case 'Plastic':
-                    $contadorPlastic++;
-                    break;
-                default:
-                    break;
+        if (isset($_REQUEST['accion'])) {
+            $basuraSeleccionada = $_REQUEST['accion'];
+            
+            // echo $basuraSeleccionada;
+            
+    
+            if ($basuraSeleccionada == $basuraActual) {
+                array_shift($_SESSION['basuraPosiciones']);
+                $_SESSION['count'] += 1;
+    
+                switch ($basuraSeleccionada) {
+                    case 'Glass':
+                        $_SESSION['contadorGlass']+=1;
+                        break;
+                    case 'Organic':
+                        $_SESSION['contadorOrganic']+=1;
+                        break;
+                    case 'Paper':
+                        $_SESSION['contadorPaper']+=1;
+                        break;
+                    case 'Plastic':
+                        $_SESSION['contadorPlastic']+=1;
+                        break;
+                    default:
+                        break;
+                }
+                
             }
-
-            $_SESSION['count'] += 1;
-
-        }else{
+    
         }
-
     }
 
     //plastic, paper, organic, glass, 
