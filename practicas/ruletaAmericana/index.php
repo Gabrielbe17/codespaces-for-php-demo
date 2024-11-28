@@ -3,15 +3,20 @@
 
     if (!isset($_SESSION['historialJugadas'])) {
         $_SESSION['historialJugadas'] = [];
-        // $_SESSION['gananciaApuesta'] = 0;
+        $_SESSION['montoCantidadApostada'] = 0;
+        $_SESSION['montoCantidadRecuperada'] = 0;
     }
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['tipoApuesta'] = $_POST['tipoApuesta']; 
         $_SESSION['valorApuesta'] = $_POST['valorApuesta']; 
         $_SESSION['cantidadApuesta'] = $_POST['cantidad'];     
+        $_SESSION['cantidadRecuperada'] = $_POST['cantidadRecuperada']; 
 
-        $_SESSION['jugada'] = ["id" => count($_SESSION['historialJugadas'])+1,"tipoApuesta" => $_SESSION['tipoApuesta'], "valorApuesta" => $_SESSION['valorApuesta'], "cantidadApuesta" => $_SESSION['cantidadApuesta']];
+        $_SESSION['montoCantidadApostada']+= $_SESSION['cantidadApuesta'];
+        $_SESSION['montoCantidadRecuperada']+= $_SESSION['cantidadRecuperada']; 
+
+        $_SESSION['jugada'] = ["id" => count($_SESSION['historialJugadas'])+1,"tipoApuesta" => $_SESSION['tipoApuesta'], "valorApuesta" => $_SESSION['valorApuesta'], "cantidadApuesta" => $_SESSION['cantidadApuesta'], "cantidadRecuperada" => $_SESSION['cantidadRecuperada']];
         array_push($_SESSION['historialJugadas'], $_SESSION['jugada']);
     }
 
@@ -29,7 +34,7 @@
                         <td>{$jugada['tipoApuesta']}</td>
                         <td>{$jugada['valorApuesta']}</td>
                         <td>{$jugada['cantidadApuesta']}€</td>
-                        <td>{$_SESSION['gananciaApuesta']}</td>
+                        <td>{$jugada['cantidadRecuperada']}€</td>
                     </tr>
                 ";
             }
@@ -38,6 +43,10 @@
         return $lista;
     }
 
+    function mostrarSaldoHistorial(){
+        $diff = $_SESSION['montoCantidadRecuperada'] - $_SESSION['montoCantidadApostada'];
+        return $diff;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -219,7 +228,6 @@
 
     <div class="position-absolute top-0 end-0 p-3 mt-10" style="height: 40rem; width: auto; display: none" id="history">
         <!-- mostrar historial de jugadas -->
-         <!-- //ver el saldo total de la ruleta en todo momento  -->
         <h4 class="text-center p-3">Historial de Jugadas</h4>    
         <table class="table rounded">
             <thead>
@@ -228,13 +236,20 @@
                     <th scope="col">Tipo Apuesta</th>
                     <th scope="col">Valor Apuesta</th>
                     <th scope="col">Cantidad Apostada</th>
-                    <th scope="col">Cantidad Ganada</th>
+                    <th scope="col">Cantidad Recuperada</th>
                 </tr>
             </thead>
             <tbody>
                 <?= mostrarHistorial();?>
             </tbody>
             <tfoot>
+                <tr>
+                    <th colspan="3">Cantidad Ganada: </th>
+                    <td colspan="2">
+                        <!-- mostrar diferencia cantidad aposta, cantidad recuperada -->
+                        <?= mostrarSaldoHistorial();?> €
+                    </td>
+                </tr>
                 <tr>
                     <th colspan="4">
                         <a class="btn btn-secondary" href="delete_history.php" role="button">Limpiar Historial</a>

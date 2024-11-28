@@ -13,7 +13,7 @@
 
     $numGanador = generarNumeroGanador();
 
-    //FUNCTION QUE procesa las apuestas, determina si la apuesta es ganadora o no.
+    //funcion que procesa las apuestas, determina si la apuesta es ganadora o no.
     function procesarApuesta($tipoApuesta){
         global $numGanador;
         global $valorApuesta;
@@ -23,12 +23,10 @@
                 //verificar si el numero generado es rojo o negro, excluyendo el 0
                 $colorNumGenerado = comprobarColorNumero($numGanador);
                 return  ($colorNumGenerado == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
-                break;  
             case 'Par/Impar':
                 // se verifica si el numero generado es par y el usuario ha introducido par, o impar y el usuario ha introducido impar
                 return (($numGanador % 2 == 0 && strcmp($valorApuesta, "Par") == 0) || ($numGanador % 2 != 0 && strcmp($valorApuesta, "Impar") == 0)) ? "Has ganado la apuesta!": "Has perdido!";
 
-                break;
             case 'Pasa/Falta':
                 //si el usuario indica falta y el numero generado es meno o igual a 18, gana la apuesta. Si indica que Pasa, si el numero ganador es mayor que 18, gana la apuesta.
                 if (strcmp($valorApuesta, "Falta") == 0 && $numGanador > 0) {
@@ -36,7 +34,6 @@
                 }else{
                     return ($numGanador > 18) ? "Has ganado la apuesta!": "Has perdido!";
                 }
-                break;
             case 'Pleno':
                 return ($numGanador == $valorApuesta) ? "Has ganado la apuesta!": "Has perdido!";
                 break;
@@ -48,7 +45,6 @@
                 }else{
                     return ($numGanador > 24) ? "Has ganado la apuesta!": "Has perdido!";
                 }
-                break;
             case 'Columna':
                 if (strcmp($valorApuesta, "1a columna") == 0) {
                     // del 1 al 34, con step de 3
@@ -77,7 +73,6 @@
                     }
                     return "Has perdido!";
                 }
-                break;
             case 'Dos docenas':
                 //se puede apostar a dos docenas, es decir, la 1 y la 2 o la 2 y la 3.
                 if (strcmp($valorApuesta, "1a y 2a dozena") == 0) {
@@ -85,7 +80,6 @@
                 }else{
                     return ($numGanador > 12 && $numGanador <= 36) ? "Has ganado la apuesta!" : "Has perdido!";
                 }
-                break;
             case 'Dos columnas':
                 $primeraCol = range(1, 34, 3);
                 $segundaCol = range(2, 35, 3);
@@ -98,7 +92,6 @@
                     // del 2 al 34, con step de 3 , y del 3 al 36 con step de
                     return (in_array($numGanador, $segundaCol) || in_array($numGanador, $terceraCol)) ? "Has ganado la apuesta!" : "Has perdido!";
                 }
-                break;
             case 'Seisena':
                 /*
                     1a seisena: 123, 456
@@ -121,7 +114,6 @@
 
                 return (in_array($numGanador, $seisenaSeleccionada)) ? "Has ganado la apuesta!" : "Has perdido!";
                 
-                break;
             case 'Cuadro':
                 //Hay 22 cuadrados
 
@@ -142,7 +134,6 @@
 
                 return in_array($numGanador, $rangoValores) ? "Has ganado la apuesta!" : "Has perdido";
                 
-                break;
             case 'Transversal':
                 /*
                     fila 1 --> 1, 3
@@ -160,14 +151,12 @@
 
                 return in_array($numGanador, range($arrayFila, $arrayFila +2)) ? "Has ganado la apuesta!" : "Has perdido!";
 
-                break;  
             case 'Caballo':
                 // convertir valor apuesta a un numero y, dependiendo de si es vertical o horizontal, sumar 1 o 3 a ese numero y ver si el numero ganador esta en ese rango
                 $posiblesNumeros = explode('/', $valorApuesta);
 
                 return in_array($numGanador, $posiblesNumeros) ? "Has ganado la apuesta!" : "Has perdido!";
 
-                break;
             default:
                 break;
         }
@@ -192,36 +181,40 @@
         $apuesta1x1 = ['Rojo/Negro', 'Par/Impar', 'Pasa/Falta'];
         $apuesta2x1 = ['Docena', 'Columna'];
         $apuesta05x1 = ['Dos docenas', 'Dos columnas'];
-        $ganancia = 0;
 
         if (procesarApuesta($tipApuesta) == "Has ganado la apuesta!") {
             if (in_array($tipApuesta, $apuesta1x1)) {
-                return 'Has recuperado la apuesta: ' . $cantidadApuesta . '€!';
+                return $cantidadApuesta;
             }else if (in_array($tipApuesta, $apuesta2x1)) {
-                $ganancia = $cantidadApuesta * 2;
-                return 'Has ganado el doble: ' . $ganancia . '€!';
+                return $cantidadApuesta * 2;
             }else if (in_array($tipApuesta, $apuesta05x1)) {
-                $ganancia = $cantidadApuesta * 0.5;
-                return 'Has ganado la mitad: ' . $ganancia . '€!';
+                return $cantidadApuesta * 0.5;
             }else if ($tipApuesta == 'Seisena') {
-                $ganancia = $cantidadApuesta * 5;
-                return 'Has ganado la mitad: ' . $ganancia . '€!';
+                return $cantidadApuesta * 5;
             }else if ($tipApuesta == 'Cuadro') {
-                $ganancia = $cantidadApuesta * 8;
-                return 'Has ganado: ' . $ganancia . '€!';
+                return $cantidadApuesta * 8;
             }else if ($tipApuesta == 'Transversal') {
-                $ganancia = $cantidadApuesta * 11;
-                return 'Has ganado: '. $ganancia . '€!';
+                return $cantidadApuesta * 11;
             }else if ($tipApuesta == 'Caballo') {
-                $ganancia = $cantidadApuesta * 17;
-                return 'Has ganado: '. $ganancia . '€!';
+                return $cantidadApuesta * 17;
             }else {
-                $ganancia = $cantidadApuesta * 35;
-                return 'Has ganado: ' . $ganancia . '€!';
+                return $cantidadApuesta * 35;
             }
         }
-        $_SESSION['gananciaApuesta'] = $ganancia;
+        return 0;
     }
+
+    function mostrarDineroGanado(){
+        global $tipoApuesta;
+
+        if (calcularGanancias($tipoApuesta) == 0) {
+            return "No has ganado nada!";
+        }else{
+            return "Has ganado: ". calcularGanancias($tipoApuesta). "!";
+        }
+    }
+
+
     $esRojo = comprobarColorNumero($numGanador) === "Rojo" ? "text-danger" : "";
 ?>
 
@@ -273,11 +266,12 @@
             <p>El numero ganador es... <span class="display-6 <?= $esRojo ?>"><?= $numGanador; ?></span>!</p>
 
             <h3> <?php echo procesarApuesta($tipoApuesta)?></h3>
-            <h4><?= calcularGanancias($tipoApuesta)?></h4>
+            <h4><?= mostrarDineroGanado();?></h4>
             <form action="index.php" method="POST">
                 <input type="hidden" name="tipoApuesta" value="<?= $tipoApuesta; ?>">
                 <input type="hidden" name="valorApuesta" value="<?= $valorApuesta; ?>">
                 <input type="hidden" name="cantidad" value="<?= $cantidadApuesta; ?>">
+                <input type="hidden" name="cantidadRecuperada" value="<?= calcularGanancias($tipoApuesta); ?>">
                 <button type="submit" class="btn btn-success mt-3 w-auto mx-auto px-4">Volver a apostar</button>
             </form>
         </div>

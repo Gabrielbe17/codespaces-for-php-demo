@@ -99,7 +99,6 @@ function mostrarPosiblesApuestas(tipoApuesta){
                 } 
             </optgroup>
             `;
-            // mostrar select con posibles valores verticales y horizontales
             break;
         default:
             break;
