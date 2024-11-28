@@ -2,6 +2,8 @@ console.log('running');
 
 const selectApuesta = document.querySelector('select#selectTipoApuesta');
 const selectPosiblesApuestas = document.querySelector('select#selectPosiblesApuestas');
+const historyBtn = document.querySelector('#historyBtn');
+const historyContainer = document.querySelector('#history');
 
 const apuestasCaballoHorizontales = [
     '1/2', '2/3', '4/5', '5/6', '7/8', '8/9', '10/11', '11/12', 
@@ -104,3 +106,11 @@ function mostrarPosiblesApuestas(tipoApuesta){
     }
     return options;
 }
+
+historyBtn.addEventListener('click', function(){
+    if (historyContainer.style.display == 'none') {
+        historyContainer.style.display = 'block';
+    }else{
+        historyContainer.style.display = 'none';
+    }
+})

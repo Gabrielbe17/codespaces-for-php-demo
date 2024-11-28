@@ -192,6 +192,7 @@
         $apuesta1x1 = ['Rojo/Negro', 'Par/Impar', 'Pasa/Falta'];
         $apuesta2x1 = ['Docena', 'Columna'];
         $apuesta05x1 = ['Dos docenas', 'Dos columnas'];
+        $ganancia = 0;
 
         if (procesarApuesta($tipApuesta) == "Has ganado la apuesta!") {
             if (in_array($tipApuesta, $apuesta1x1)) {
@@ -219,6 +220,7 @@
                 return 'Has ganado: ' . $ganancia . '€!';
             }
         }
+        $_SESSION['gananciaApuesta'] = $ganancia;
     }
     $esRojo = comprobarColorNumero($numGanador) === "Rojo" ? "text-danger" : "";
 ?>

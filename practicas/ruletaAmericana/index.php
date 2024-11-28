@@ -3,6 +3,7 @@
 
     if (!isset($_SESSION['historialJugadas'])) {
         $_SESSION['historialJugadas'] = [];
+        // $_SESSION['gananciaApuesta'] = 0;
     }
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -28,6 +29,7 @@
                         <td>{$jugada['tipoApuesta']}</td>
                         <td>{$jugada['valorApuesta']}</td>
                         <td>{$jugada['cantidadApuesta']}€</td>
+                        <td>{$_SESSION['gananciaApuesta']}</td>
                     </tr>
                 ";
             }
@@ -211,17 +213,22 @@
         </form>
         
     </div>
-    <div class="position-absolute top-0 left-0  p-3" style="height: 40rem; width: auto">
+    <div class="p-4">
+        <buton class="btn btn-secondary position-absolute top-0 mt-4" id="historyBtn">Ver historial</buton>
+    </div>
+
+    <div class="position-absolute top-0 end-0 p-3 mt-10" style="height: 40rem; width: auto; display: none" id="history">
         <!-- mostrar historial de jugadas -->
          <!-- //ver el saldo total de la ruleta en todo momento  -->
         <h4 class="text-center p-3">Historial de Jugadas</h4>    
-        <table class="table">
+        <table class="table rounded">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Tipo Apuesta</th>
                     <th scope="col">Valor Apuesta</th>
                     <th scope="col">Cantidad Apostada</th>
+                    <th scope="col">Cantidad Ganada</th>
                 </tr>
             </thead>
             <tbody>
