@@ -44,7 +44,7 @@
 
             // Mostrar resultados encontrados o un mensaje de no se ha encontrado
             $resultados = $biblioteca->cercarLlibre($title); 
-            echo "<div class='mx-auto container p-5'>
+            echo "<div class='mx-auto container p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                 $resultados 
             </div>";
             // $resultadosBusqueda = $biblioteca->cercarLlibre($title);

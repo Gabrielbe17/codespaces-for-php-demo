@@ -49,7 +49,7 @@
                 }
             }
 
-            return $resultados ? $resultados :  "<p>No se ha encontrado ningún libro.</p>";
+            return $resultados ? $resultados :  "<p class='text-center border'>No se ha encontrado ningún libro.</p>";
         }
     }
 ?>
