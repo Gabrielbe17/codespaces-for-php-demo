@@ -34,17 +34,20 @@
         }
 
     }
-    // al buscar libro 
+
+    // $resultadosBusqueda = null;
+    // al buscar libro, usar método GET
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if (isset($_GET['search']))  {
-            $title = $_GET['search'];
-            
-            
 
-            echo $biblioteca->cercarLlibre($title);
-            
+            $title = $_GET['search'];
+
             // Mostrar resultados encontrados o un mensaje de no se ha encontrado
-            
+            $resultados = $biblioteca->cercarLlibre($title); 
+            echo "<div class='mx-auto container p-5'>
+                $resultados 
+            </div>";
+            // $resultadosBusqueda = $biblioteca->cercarLlibre($title);
         }
 
     }
