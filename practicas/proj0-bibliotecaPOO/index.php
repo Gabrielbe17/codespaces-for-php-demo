@@ -1,56 +1,63 @@
 <?php
-
-    if(!isset($_SESSION['biblioteca'])){
-        $biblioteca = new Biblioteca();
+    session_start();
+    
+    include('./classes/Biblioteca.php');
+    include('./classes/Llibre.php');
+    
+    if (!isset($_SESSION['biblioteca']) || !($_SESSION['biblioteca'])) {
+        
+        //serializar el objeto biblioteca la primera vez, para poder GUARDAR el objeto en la sesión (TRANSFORMAR A TEXTO)
+        $_SESSION['biblioteca'] = serialize(new Biblioteca());
     }
 
-    class Llibre {
-        public string $titol;
-        public string $autor;
-        public int $anyPublicacio;
-        public string $foto;
+    // DESEREALIZAR biblioteca para poder usar sus métodos y atributos, 
+    // Cuando se quiera volver a añadir un libro a la sesión --> SEREALIZAR el objeto otra vez
+    $biblioteca = unserialize($_SESSION['biblioteca']);
 
-        public function __construct(string $titol, string $autor, int $anyPublicacio, string $foto) {
-            $this->titol = $titol;
-            $this->autor = $autor;
-            $this->anyPublicacio = $anyPublicacio;
-            $this->foto = $foto;
+  
+    // al añadir libro
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['title']) && isset($_POST['author']) && isset($_POST['year']) && isset($_POST['url']))  {
+            $title = $_POST['title'];
+            $author = $_POST['author'];
+            $year = $_POST['year'];
+            $url = $_POST['url'];
+            
+            // se crea el objeto libro
+            $llibre = new Llibre($title, $author, $year, $url);
+
+            // añadir el objeto libro a la biblioteca usando el objeto biblioteca
+            $biblioteca->afegirLLibre($llibre);
+
+            // guardar biblioteca a la sesion
+            $_SESSION['biblioteca'] = serialize($biblioteca);
         }
-        public function mostrarDetailes () {
-            return $this->titol . ' de ' . $this->autor . ',' . $this->anyPublicacio;
-        }
+
     }
+    // al buscar libro 
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+        if (isset($_GET['search']))  {
+            $title = $_GET['search'];
+            
+            
 
-    class Biblioteca {
-        public $libros = [];
-        public function AfegirLlibre () {
-            //  permet afegir un llibre a la col·lecció.
-
-            // push al array libros, this->libros , hacerle push la instantcia creada de la clase libro
+            echo $biblioteca->cercarLlibre($title);
+            
+            // Mostrar resultados encontrados o un mensaje de no se ha encontrado
             
         }
-        public function MostrarLlibres () {
-            // retorna una llista amb els llibres actuals de la biblioteca.
 
-        }
-        public function CercarLlibre ($title) {
-            // permet buscar un llibre que contingui un text determinat en el títol (no és necessari que sigui exacte).
-
-        }
     }
-
-    // if (isset($_SERVER["REQUEST_METHOD"] == "GET")) {
-        
-    // }
 
 
     function verPagina () {
+        global $biblioteca;
         $pagina = isset($_GET['page']) ? $_GET['page'] : 'list';
 
         switch($pagina) {
             case 'addBook':
                 return "
-                <form action='' class='max-w-sm mx-auto method='GET''>
+                <form action='' class='max-w-sm mx-auto' method='POST'>
                     <div class='mb-5'>
                         <label for='title'>Título</label>
                         <input type='text' id='title' name='title' class='block w-full p-2.5 rounded-lg focus:ring-blue-500 bg-gray-50 border border-gray-300 text-gray-900' required> 
@@ -71,7 +78,7 @@
                 </form>";
             case 'searchBook':
                 return "
-                <form action='' class='max-w-sm mx-auto my-10'>
+                <form action='' class='max-w-sm mx-auto my-10' method='GET'>
                     <div class='mb-5'>
                         <label for='search'>Buscar Por Título</label>
                         <input type='search' id='search' name='search' class='block w-full p-2.5 rounded-lg focus:ring-blue-500 bg-gray-50 border border-gray-300 text-gray-900' required> 
@@ -79,27 +86,15 @@
                     <button type='submit' class='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Buscar Libro</button>
                 </form>";
             case 'listBooks':
-                // retornar listado del array de libros como cards
+                $libros = $biblioteca->mostrarLlibres();
                 return "
-                    <div class='max-w-sm rounded overflow-hidden shadow-lg'>
-                        <img class='w-full' src='' alt='Sunset in the mountains'>
-                        <div class='px-6 py-4'>
-                            <div class='font-bold text-xl mb-2 title-book'></div>
-                            <p class='text-gray-700 text-base'>
-                                Autor: 
-                            </p>
-                            <p class='text-gray-700 text-base'>
-                                Año: 
-                            </p>
-                        </div>
-                    </div>";
-            
+                    <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
+                        $libros  
+                    </div>
+                ";
         }
         
     }
-
-    // usar sesiones para almacenar los libros 
-
 ?> 
 
 <!DOCTYPE html>
@@ -117,13 +112,13 @@
         <h1 class="text-4xl text-center my-5">Biblioteca</h1>
         <ul class="flex">
             <li class="mr-6">
-                <a class="text-blue-500 hover:text-blue-800" href="?page=addBook">Añadir Libro</a>
+                <a class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full" href="?page=addBook">Añadir Libro</a>
             </li>
             <li class="mr-6">
-                <a class="text-blue-500 hover:text-blue-800" href="?page=listBooks">Ver Libros</a>
+                <a class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full" href="?page=listBooks">Ver Libros</a>
             </li>
             <li class="mr-6">
-                <a class="text-blue-500 hover:text-blue-800" href="?page=searchBook">Buscar Libro</a>
+                <a class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full" href="?page=searchBook">Buscar Libro</a>
             </li>
         </ul>
 
