@@ -1,0 +1,3 @@
+Se ha usado el cdn de tailwind para los estilos del proyecto.
+Los mejoras visuales se han aplicado al navbar, links, botones, formularios y cards de los libros.
+Además, se ha incluido el cdn de fontawesome para los iconos en los botones principales.

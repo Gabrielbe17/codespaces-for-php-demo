@@ -35,28 +35,28 @@
 
     }
 
-    // $resultadosBusqueda = null;
-    // al buscar libro, usar método GET
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        if (isset($_GET['search']))  {
 
-            $title = $_GET['search'];
-
-            // Mostrar resultados encontrados o un mensaje de no se ha encontrado
-            $resultados = $biblioteca->cercarLlibre($title); 
-            echo "<div class='mx-auto container p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
-                $resultados 
-            </div>";
-            // $resultadosBusqueda = $biblioteca->cercarLlibre($title);
-        }
-
-    }
 
 
     function verPagina () {
         global $biblioteca;
-        $pagina = isset($_GET['page']) ? $_GET['page'] : 'list';
+        $pagina = isset($_GET['page']) ? $_GET['page'] : '';
 
+        // al buscar libro, usar método GET
+        $resultados = null;
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            if (isset($_GET['search']))  {
+
+                $title = $_GET['search'];
+
+                // Mostrar resultados encontrados o un mensaje de no se ha encontrado
+                $resultados = $biblioteca->cercarLlibre($title); 
+                $resultadosContainer = "<div class='mx-auto container p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
+                    $resultados 
+                </div>";
+            }
+
+        }
         switch($pagina) {
             case 'addBook':
                 return "
@@ -77,7 +77,7 @@
                         <label for='url'>URL Imagen</label>
                         <input type='url' id='url' name='url' class='block w-full p-2.5 rounded-lg focus:ring-blue-500 bg-gray-50 border border-gray-300 text-gray-900' required> 
                     </div>
-                    <button type='submit' class='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Añadir Libro</button>
+                    <button type='submit' class='text-white bg-black font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center'>Añadir Libro</button>
                 </form>";
             case 'searchBook':
                 return "
@@ -86,7 +86,7 @@
                         <label for='search'>Buscar Por Título</label>
                         <input type='search' id='search' name='search' class='block w-full p-2.5 rounded-lg focus:ring-blue-500 bg-gray-50 border border-gray-300 text-gray-900' required> 
                     </div>
-                    <button type='submit' class='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Buscar Libro</button>
+                    <button type='submit' class='text-white bg-black font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center'>Buscar Libro</button>
                 </form>";
             case 'listBooks':
                 $libros = $biblioteca->mostrarLlibres();
@@ -95,6 +95,30 @@
                         $libros  
                     </div>
                 ";
+            default: 
+                
+                return empty($resultados) ?  "<div class='max-w-[45rem] mx-auto flex flex-col gap-10 text-center h-[40rem]'>
+                    <div class='leading-10'>
+                        <h1 class='text-4xl font-semibold'>Bienvenido a tu Biblioteca Virtual</h1>
+                        <p class='text-slate-600 text-lg'>Busca, añade y lista tus experiencias a través de los libros.</p>
+                    </div>
+                    <ul class='flex items-center justify-center gap-5'>
+                        <li class=''>
+                            <a class='p-3 bg-black text-white text-lg font-medium rounded-md hover:opacity-80 transition-opacity' href='?page=listBooks'>
+                            <i class='fa-solid fa-book'></i> <span class='ml-1'>Ver Libros</span></a>
+                        </li>
+                        <li class=''>
+                            <a class='p-3 bg-white text-black text-lg font-medium rounded-md border border-black hover:bg-gray-100 transition-colors' href='?page=addBook'>
+                                <i class='fa-solid fa-circle-plus'></i> <span class='ml-1'>Añadir Libro</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a class='p-3 bg-gray-200 text-gray-800 text-lg font-medium rounded-md hover:bg-gray-300 transition-colors' href='?page=searchBook'>
+                                <i class='fa-solid fa-magnifying-glass'></i> <span>Buscar Libro</span></a>
+                        </li>
+                    </ul>
+                </div>" : $resultadosContainer;
+            
         }
         
     }
@@ -106,26 +130,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="container mx-auto">
-
-        <!-- Menú -->
-        <h1 class="text-4xl text-center my-5">Biblioteca</h1>
-        <ul class="flex">
-            <li class="mr-6">
-                <a class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full" href="?page=addBook">Añadir Libro</a>
+    <div class="p-5 bg-black mb-5 flex items-center justify-between">
+        <h1 class="text-4xl text-center text-white">
+            <a href="/">Biblioteca</a>    
+        </h1>
+        
+        <ul class='flex items-center justify-center gap-5'>
+            <li class=''>
+                <a class='p-3 text-slate-300' href='?page=listBooks'>
+                Ver Libros</a>
             </li>
-            <li class="mr-6">
-                <a class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full" href="?page=listBooks">Ver Libros</a>
+            <li class=''>
+                <a class='p-3 text-slate-300' href='?page=addBook'>
+                    Añadir Libro
+                </a>
             </li>
-            <li class="mr-6">
-                <a class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full" href="?page=searchBook">Buscar Libro</a>
+            <li class=''>
+                <a class='p-3 text-slate-300' href='?page=searchBook'>
+                    Buscar Libro
+                </a>
             </li>
         </ul>
-
-        <div class="py-5 mt-5">
+    </div>
+    <div class="container mx-auto">
+        <div class="py-5 mt-[7rem]">
             <?php
                 echo verPagina();
             ?> 
