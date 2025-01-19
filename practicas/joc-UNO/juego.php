@@ -13,6 +13,8 @@
     $baraja->crea_baraja();
     $baraja->mezcla();
 
+    echo $baraja->pinta_baraja();
+
     $cartas_total = $baraja->conjunto_cartas;
 
     // echo '<pre>' , var_dump($cartas_total) , '</pre>';
